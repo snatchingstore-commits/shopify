@@ -1,0 +1,30 @@
+<section class="page-width template-page">
+  <div class="shelf">
+    <div class="shelf__heading">
+      <h1>{{ collection.title | default: 'Catalog' }}</h1>
+      <span>{{ collection.products_count }} products</span>
+    </div>
+    {% paginate collection.products by 20 %}
+      <div class="product-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          <p>No products found in this collection.</p>
+        {% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}
+        <nav class="nav-row__inner" aria-label="Pagination">
+          {% if paginate.previous %}<a href="{{ paginate.previous.url }}">Previous</a>{% endif %}
+          <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+          {% if paginate.next %}<a href="{{ paginate.next.url }}">Next</a>{% endif %}
+        </nav>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection grid"
+}
+{% endschema %}

@@ -1,0 +1,52 @@
+<section class="page-width template-page">
+  <article class="product-detail">
+    <div class="product-detail__media">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+          {{ media.preview_image | image_url: width: 1100 | image_tag: loading: 'lazy', alt: product.title }}
+        {% endif %}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {% endfor %}
+    </div>
+
+    <div class="product-detail__info">
+      <h1>{{ product.title }}</h1>
+      <div class="price-row">
+        <span class="price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="compare-price">{{ product.compare_at_price | money }}</span>
+          <span class="sale-badge">Sale</span>
+        {% endif %}
+      </div>
+
+      {% form 'product', product, class: 'product-form' %}
+        {% unless product.has_only_default_variant %}
+          <select name="id">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                {{ variant.title }} - {{ variant.price | money }}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+        <input class="quantity-input" type="number" name="quantity" min="1" value="1">
+        <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+        </button>
+      {% endform %}
+
+      <div class="rte">
+        {{ product.description }}
+      </div>
+    </div>
+  </article>
+</section>
+
+{% schema %}
+{
+  "name": "Main product"
+}
+{% endschema %}

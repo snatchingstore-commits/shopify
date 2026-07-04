@@ -1,0 +1,57 @@
+<div class="top-strip">
+  <div class="page-width top-strip__inner">
+    <span>{{ section.settings.promo_text }}</span>
+    <span>{{ section.settings.service_text }}</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="page-width header-main">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      <span class="brand__mark">S</span>
+      <span>SnatchingStore</span>
+    </a>
+
+    <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products, deals, categories">
+      <button type="submit">Search</button>
+    </form>
+
+    <nav class="header-actions" aria-label="Customer links">
+      <a href="{{ routes.account_url }}">Account</a>
+      <a href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+    </nav>
+  </div>
+
+  <div class="nav-row">
+    <nav class="page-width nav-row__inner" aria-label="Main menu">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% else %}
+        <a href="{{ routes.root_url }}">Home</a>
+        <a href="{{ routes.all_products_collection_url }}">Catalog</a>
+        <a href="/pages/contact">Contact</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo text",
+      "default": "Mega deals, home finds, gadgets, beauty and more"
+    },
+    {
+      "type": "text",
+      "id": "service_text",
+      "label": "Service text",
+      "default": "Fast support | Secure checkout | New offers weekly"
+    }
+  ]
+}
+{% endschema %}

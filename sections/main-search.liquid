@@ -1,0 +1,42 @@
+<section class="page-width template-page">
+  <div class="shelf">
+    <div class="shelf__heading">
+      <h1>Search</h1>
+      {% if search.performed %}
+        <span>{{ search.results_count }} results for "{{ search.terms | escape }}"</span>
+      {% endif %}
+    </div>
+
+    <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products">
+      <button type="submit">Search</button>
+    </form>
+
+    {% if search.performed %}
+      {% paginate search.results by 20 %}
+        <div class="product-grid" style="margin-top: 16px;">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% endif %}
+          {% else %}
+            <p>No matching products found.</p>
+          {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+          <nav class="nav-row__inner" aria-label="Pagination">
+            {% if paginate.previous %}<a href="{{ paginate.previous.url }}">Previous</a>{% endif %}
+            <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+            {% if paginate.next %}<a href="{{ paginate.next.url }}">Next</a>{% endif %}
+          </nav>
+        {% endif %}
+      {% endpaginate %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search"
+}
+{% endschema %}

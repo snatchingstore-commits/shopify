@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "marketplace_home": {
+      "type": "ss-marketplace-home"
+    }
+  },
+  "order": [
+    "marketplace_home"
+  ]
+}

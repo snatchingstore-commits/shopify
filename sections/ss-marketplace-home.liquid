@@ -1,0 +1,226 @@
+{% assign featured_collection = section.settings.featured_collection | default: collections.all %}
+{% assign deal_collection = section.settings.deal_collection | default: collections.all %}
+
+<section class="page-width market-shell">
+  <aside class="category-panel" aria-label="Shop categories">
+    <h2>Categories</h2>
+    {% for block in section.blocks %}
+      {% if block.type == 'category' %}
+        <a class="category-link" href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+      {% endif %}
+    {% endfor %}
+  </aside>
+
+  <div class="hero-panel">
+    <div class="hero-panel__content">
+      <div class="hero-copy">
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h1>{{ section.settings.heading }}</h1>
+        <p>{{ section.settings.subheading }}</p>
+        <a class="button button--dark" href="{{ section.settings.hero_link }}">Shop deals</a>
+      </div>
+      <div class="hero-tiles" aria-label="Store highlights">
+        <div class="hero-tile">
+          <strong>Home upgrades</strong>
+          <span>Decor, organizers and useful finds.</span>
+        </div>
+        <div class="hero-tile">
+          <strong>Daily picks</strong>
+          <span>Rotating offers for quick discovery.</span>
+        </div>
+        <div class="hero-tile">
+          <strong>Multi-niche shopping</strong>
+          <span>Built to grow into more categories.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="deal-panel" aria-label="Quick deals">
+    <h2>Today on SnatchingStore</h2>
+    <a class="mini-deal" href="{{ routes.all_products_collection_url }}">
+      <strong>Flash picks</strong>
+      <span>Limited-time product highlights</span>
+    </a>
+    <a class="mini-deal" href="{{ routes.search_url }}">
+      <strong>Find it fast</strong>
+      <span>Search across every niche</span>
+    </a>
+    <a class="mini-deal" href="/pages/contact">
+      <strong>Need help?</strong>
+      <span>Ask before you order</span>
+    </a>
+  </aside>
+</section>
+
+<section class="page-width trust-band" aria-label="Shopping benefits">
+  <div class="trust-item">
+    <strong>Secure checkout</strong>
+    <span>Protected Shopify payments</span>
+  </div>
+  <div class="trust-item">
+    <strong>Sharp offers</strong>
+    <span>Discount-first product shelves</span>
+  </div>
+  <div class="trust-item">
+    <strong>Easy browsing</strong>
+    <span>Categories and search up front</span>
+  </div>
+  <div class="trust-item">
+    <strong>Support ready</strong>
+    <span>Contact before or after order</span>
+  </div>
+</section>
+
+<section class="page-width shelf">
+  <div class="shelf__heading">
+    <h2>{{ section.settings.featured_title }}</h2>
+    <a href="{{ featured_collection.url | default: routes.all_products_collection_url }}">See all</a>
+  </div>
+  <div class="product-grid">
+    {% for product in featured_collection.products limit: 10 %}
+      {% render 'product-card', product: product %}
+    {% else %}
+      {% for product in collections.all.products limit: 10 %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-width shelf">
+  <div class="shelf__heading">
+    <h2>Shop by department</h2>
+    <a href="{{ routes.all_products_collection_url }}">Catalog</a>
+  </div>
+  <div class="collection-grid">
+    {% for collection in collections limit: 12 %}
+      {% unless collection.handle == 'frontpage' %}
+        <a class="collection-tile" href="{{ collection.url }}">{{ collection.title }}</a>
+      {% endunless %}
+    {% else %}
+      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Home Decor</a>
+      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Beauty</a>
+      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Gadgets</a>
+      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Kitchen</a>
+      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Fashion</a>
+      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Lifestyle</a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-width shelf">
+  <div class="shelf__heading">
+    <h2>{{ section.settings.deal_title }}</h2>
+    <a href="{{ deal_collection.url | default: routes.all_products_collection_url }}">See all</a>
+  </div>
+  <div class="product-grid">
+    {% for product in deal_collection.products limit: 10 %}
+      {% render 'product-card', product: product %}
+    {% else %}
+      {% for product in collections.all.products limit: 10 %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-width newsletter">
+  <div>
+    <h2>Get the newest steals first</h2>
+    <p>Sign up for product drops, seasonal picks and store updates.</p>
+  </div>
+  {% form 'customer' %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input type="email" name="contact[email]" placeholder="Email address" required>
+    <button class="button" type="submit">Join</button>
+  {% endform %}
+</section>
+
+{% schema %}
+{
+  "name": "Marketplace homepage",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Multi-niche deals"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Snatch the finds everyone wants"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Browse useful home decor, lifestyle products and new daily offers in one clean marketplace."
+    },
+    {
+      "type": "url",
+      "id": "hero_link",
+      "label": "Hero link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured collection"
+    },
+    {
+      "type": "text",
+      "id": "featured_title",
+      "label": "Featured shelf title",
+      "default": "Top selling items"
+    },
+    {
+      "type": "collection",
+      "id": "deal_collection",
+      "label": "Deal collection"
+    },
+    {
+      "type": "text",
+      "id": "deal_title",
+      "label": "Deal shelf title",
+      "default": "Flash deals"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Home Decor"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "default": "/collections/all"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marketplace homepage",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Home Decor", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Kitchen & Dining", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Beauty & Care", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Phones & Gadgets", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Fashion", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Lifestyle", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Seasonal Deals", "link": "/collections/all" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
