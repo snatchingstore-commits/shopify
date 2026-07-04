@@ -53,6 +53,31 @@
   </aside>
 </section>
 
+<section class="page-width promo-slider" aria-label="Featured promotions">
+  <div class="promo-slider__track">
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' %}
+        <article class="promo-slide promo-slide--{{ forloop.index }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 1500 | image_tag: class: 'promo-slide__image', loading: 'lazy', alt: block.settings.heading }}
+          {% endif %}
+          <div class="promo-slide__content">
+            <p class="eyebrow">{{ block.settings.kicker }}</p>
+            <h2>{{ block.settings.heading }}</h2>
+            <p>{{ block.settings.text }}</p>
+            <a class="button" href="{{ block.settings.link }}">{{ block.settings.button_label }}</a>
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="promo-slider__dots" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</section>
+
 <section class="page-width trust-band" aria-label="Shopping benefits">
   <div class="trust-item">
     <strong>Secure checkout</strong>
@@ -206,6 +231,47 @@
           "default": "/collections/all"
         }
       ]
+    },
+    {
+      "type": "slide",
+      "name": "Slider banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner image"
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Small heading",
+          "default": "Limited offer"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Fresh deals for every corner of your life"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Promote a category, seasonal offer, or best-selling collection here."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "default": "/collections/all"
+        }
+      ]
     }
   ],
   "presets": [
@@ -218,7 +284,10 @@
         { "type": "category", "settings": { "label": "Phones & Gadgets", "link": "/collections/all" } },
         { "type": "category", "settings": { "label": "Fashion", "link": "/collections/all" } },
         { "type": "category", "settings": { "label": "Lifestyle", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Seasonal Deals", "link": "/collections/all" } }
+        { "type": "category", "settings": { "label": "Seasonal Deals", "link": "/collections/all" } },
+        { "type": "slide", "settings": { "kicker": "SnatchingStore picks", "heading": "Home decor deals that feel premium", "text": "Feature planters, vases, wall pieces and decorative finds with a strong sale message.", "button_label": "Shop decor", "link": "/collections/all" } },
+        { "type": "slide", "settings": { "kicker": "New niches coming", "heading": "Gadgets, beauty and lifestyle in one store", "text": "Use this banner to announce new product categories as you expand.", "button_label": "Explore", "link": "/collections/all" } },
+        { "type": "slide", "settings": { "kicker": "Flash shelf", "heading": "Deals made for quick discovery", "text": "Highlight best sellers and fast-moving discounts with a marketplace feel.", "button_label": "View offers", "link": "/collections/all" } }
       ]
     }
   ]

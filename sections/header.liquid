@@ -8,8 +8,12 @@
 <header class="site-header">
   <div class="page-width header-main">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      <span class="brand__mark">S</span>
-      <span>SnatchingStore</span>
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: class: 'brand__logo', loading: 'eager', alt: shop.name }}
+      {% else %}
+        <span class="brand__mark">S</span>
+        <span>SnatchingStore</span>
+      {% endif %}
     </a>
 
     <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
@@ -40,6 +44,11 @@
 {
   "name": "Header",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Store logo"
+    },
     {
       "type": "text",
       "id": "promo_text",

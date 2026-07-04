@@ -1,7 +1,92 @@
 {
   "sections": {
     "marketplace_home": {
-      "type": "ss-marketplace-home"
+      "type": "ss-marketplace-home",
+      "blocks": {
+        "cat_home": {
+          "type": "category",
+          "settings": {
+            "label": "Home Decor",
+            "link": "/collections/all"
+          }
+        },
+        "cat_kitchen": {
+          "type": "category",
+          "settings": {
+            "label": "Kitchen & Dining",
+            "link": "/collections/all"
+          }
+        },
+        "cat_beauty": {
+          "type": "category",
+          "settings": {
+            "label": "Beauty & Care",
+            "link": "/collections/all"
+          }
+        },
+        "cat_gadgets": {
+          "type": "category",
+          "settings": {
+            "label": "Phones & Gadgets",
+            "link": "/collections/all"
+          }
+        },
+        "cat_fashion": {
+          "type": "category",
+          "settings": {
+            "label": "Fashion",
+            "link": "/collections/all"
+          }
+        },
+        "cat_lifestyle": {
+          "type": "category",
+          "settings": {
+            "label": "Lifestyle",
+            "link": "/collections/all"
+          }
+        },
+        "slide_decor": {
+          "type": "slide",
+          "settings": {
+            "kicker": "SnatchingStore picks",
+            "heading": "Home decor deals that feel premium",
+            "text": "Feature planters, vases, wall pieces and decorative finds with a strong sale message.",
+            "button_label": "Shop decor",
+            "link": "/collections/all"
+          }
+        },
+        "slide_multi": {
+          "type": "slide",
+          "settings": {
+            "kicker": "New niches coming",
+            "heading": "Gadgets, beauty and lifestyle in one store",
+            "text": "Use this banner to announce new product categories as you expand.",
+            "button_label": "Explore",
+            "link": "/collections/all"
+          }
+        },
+        "slide_flash": {
+          "type": "slide",
+          "settings": {
+            "kicker": "Flash shelf",
+            "heading": "Deals made for quick discovery",
+            "text": "Highlight best sellers and fast-moving discounts with a marketplace feel.",
+            "button_label": "View offers",
+            "link": "/collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "cat_home",
+        "cat_kitchen",
+        "cat_beauty",
+        "cat_gadgets",
+        "cat_fashion",
+        "cat_lifestyle",
+        "slide_decor",
+        "slide_multi",
+        "slide_flash"
+      ]
     }
   },
   "order": [
