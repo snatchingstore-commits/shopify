@@ -6,36 +6,31 @@
 </div>
 
 <header class="site-header">
+  <input class="header-search-toggle" type="checkbox" id="HeaderSearchToggle" aria-hidden="true">
+
   <div class="page-width header-main">
+    <div class="header-spacer" aria-hidden="true"></div>
+
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
       {% if section.settings.logo != blank %}
-        {{ section.settings.logo | image_url: width: 320 | image_tag: class: 'brand__logo', loading: 'eager', alt: shop.name }}
+        {{ section.settings.logo | image_url: width: 720 | image_tag: class: 'brand__logo', loading: 'eager', alt: shop.name }}
       {% else %}
         <span class="brand__mark">S</span>
         <span>SnatchingStore</span>
       {% endif %}
     </a>
 
-    <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
-      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products, deals, categories">
+    <form class="search-form header-search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products">
       <button type="submit">Search</button>
     </form>
 
     <nav class="header-actions" aria-label="Customer links">
+      <label class="icon-button search-toggle-button" for="HeaderSearchToggle" aria-label="Open search">
+        <span class="search-icon" aria-hidden="true"></span>
+      </label>
       <a href="{{ routes.account_url }}">Account</a>
       <a href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
-    </nav>
-  </div>
-
-  <div class="nav-row">
-    <nav class="page-width nav-row__inner" aria-label="Main menu">
-      {% for link in linklists.main-menu.links %}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {% else %}
-        <a href="{{ routes.root_url }}">Home</a>
-        <a href="{{ routes.all_products_collection_url }}">Catalog</a>
-        <a href="/pages/contact">Contact</a>
-      {% endfor %}
     </nav>
   </div>
 </header>

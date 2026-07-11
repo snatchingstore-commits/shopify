@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ff8a00">
+    <meta name="theme-color" content="#183378">
     <link rel="canonical" href="{{ canonical_url }}">
     <title>
       {{ page_title }}
@@ -16,6 +16,7 @@
     {% endif %}
     {{ content_for_header }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'snatchingstore-brand.css' | asset_url | stylesheet_tag }}
   </head>
   <body>
     <a class="skip-link" href="#MainContent">Skip to content</a>
