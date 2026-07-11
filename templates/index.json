@@ -96,7 +96,31 @@
         "slide_multi",
         "slide_flash"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "Multi-niche deals",
+        "heading": "Snatch the finds everyone wants",
+        "subheading": "Browse useful home decor, lifestyle products and new daily offers in one clean marketplace.",
+        "hero_link": "shopify://collections/all",
+        "main_banner_1": "shopify://shop_images/product_banner_1_natural_wall_decor_1920x600_645457d7-54a7-4912-b5d0-d751ee68d9c2.png",
+        "main_banner_1_alt": "SnatchingStore main banner 1",
+        "main_banner_1_link": "shopify://collections/all",
+        "main_banner_2": "shopify://shop_images/product_banner_2_elegant_wall_accents_1920x600_5a8b23b5-7d40-45c8-81fe-12dba506f5a2.png",
+        "main_banner_2_alt": "SnatchingStore main banner 2",
+        "main_banner_2_link": "shopify://collections/all",
+        "main_banner_3": "shopify://shop_images/product_banner_3_colorful_hanging_collection_1920x600_2c7b6ea5-755f-4af9-b861-77aa2a460ea5.png",
+        "main_banner_3_alt": "SnatchingStore main banner 3",
+        "main_banner_3_link": "shopify://collections/all",
+        "flash_poster_1_alt": "SnatchingStore flash sale poster 1",
+        "flash_poster_1_link": "shopify://collections/all",
+        "flash_poster_2_alt": "SnatchingStore flash sale poster 2",
+        "flash_poster_2_link": "shopify://collections/all",
+        "flash_poster_3_alt": "SnatchingStore flash sale poster 3",
+        "flash_poster_3_link": "shopify://collections/all",
+        "featured_collection": "",
+        "featured_title": "Top selling items",
+        "deal_collection": "",
+        "deal_title": "Flash deals"
+      }
     }
   },
   "order": [
