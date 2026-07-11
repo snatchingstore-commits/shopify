@@ -12,26 +12,30 @@
   </aside>
 
   <div class="hero-panel hero-banner-frame" aria-label="Featured banner slider">
-    {% assign slide_index = 0 %}
-    {% for block in section.blocks %}
-      {% if block.type == 'slide' and slide_index < 3 %}
-        {% assign slide_index = slide_index | plus: 1 %}
-        <article class="hero-frame__slide hero-frame__slide--{{ slide_index }}" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: block.settings.heading }}
-          {% else %}
-            <div class="hero-frame__fallback"></div>
-          {% endif %}
-          <a class="hero-frame__link" href="{{ block.settings.link | default: section.settings.hero_link }}" aria-label="{{ block.settings.heading | default: section.settings.heading }}"></a>
-        </article>
-      {% endif %}
-    {% endfor %}
-    {% if slide_index == 0 %}
-      <article class="hero-frame__slide hero-frame__slide--1">
+    <article class="hero-frame__slide hero-frame__slide--1">
+      {% if section.settings.main_banner_1 != blank %}
+        {{ section.settings.main_banner_1 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_1_alt }}
+      {% else %}
         <div class="hero-frame__fallback"></div>
-        <a class="hero-frame__link" href="{{ section.settings.hero_link }}" aria-label="{{ section.settings.heading }}"></a>
-      </article>
-    {% endif %}
+      {% endif %}
+      <a class="hero-frame__link" href="{{ section.settings.main_banner_1_link | default: section.settings.hero_link }}" aria-label="{{ section.settings.main_banner_1_alt | default: 'Featured promotion' }}"></a>
+    </article>
+    <article class="hero-frame__slide hero-frame__slide--2">
+      {% if section.settings.main_banner_2 != blank %}
+        {{ section.settings.main_banner_2 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_2_alt }}
+      {% else %}
+        <div class="hero-frame__fallback"></div>
+      {% endif %}
+      <a class="hero-frame__link" href="{{ section.settings.main_banner_2_link | default: section.settings.hero_link }}" aria-label="{{ section.settings.main_banner_2_alt | default: 'Featured promotion' }}"></a>
+    </article>
+    <article class="hero-frame__slide hero-frame__slide--3">
+      {% if section.settings.main_banner_3 != blank %}
+        {{ section.settings.main_banner_3 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_3_alt }}
+      {% else %}
+        <div class="hero-frame__fallback"></div>
+      {% endif %}
+      <a class="hero-frame__link" href="{{ section.settings.main_banner_3_link | default: section.settings.hero_link }}" aria-label="{{ section.settings.main_banner_3_alt | default: 'Featured promotion' }}"></a>
+    </article>
     <div class="hero-frame__dots" aria-hidden="true">
       <span></span>
       <span></span>
@@ -48,22 +52,24 @@
     <a class="button" href="{{ routes.all_products_collection_url }}">Shop offers</a>
   </div>
   <div class="flash-sale-feature__posters">
-    {% assign poster_index = 0 %}
-    {% for block in section.blocks %}
-      {% if block.type == 'slide' and poster_index < 3 %}
-        {% assign poster_index = poster_index | plus: 1 %}
-        <article class="flash-poster flash-poster--{{ poster_index }}" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: block.settings.heading }}
-          {% endif %}
-          <div class="flash-poster__content">
-            <p class="eyebrow">{{ block.settings.kicker }}</p>
-            <h2>{{ block.settings.heading }}</h2>
-            <p>{{ block.settings.text }}</p>
-          </div>
-        </article>
+    <article class="flash-poster flash-poster--1">
+      {% if section.settings.flash_poster_1 != blank %}
+        {{ section.settings.flash_poster_1 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_1_alt }}
       {% endif %}
-    {% endfor %}
+      <a class="hero-frame__link" href="{{ section.settings.flash_poster_1_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_1_alt | default: 'Flash sale poster' }}"></a>
+    </article>
+    <article class="flash-poster flash-poster--2">
+      {% if section.settings.flash_poster_2 != blank %}
+        {{ section.settings.flash_poster_2 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_2_alt }}
+      {% endif %}
+      <a class="hero-frame__link" href="{{ section.settings.flash_poster_2_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_2_alt | default: 'Flash sale poster' }}"></a>
+    </article>
+    <article class="flash-poster flash-poster--3">
+      {% if section.settings.flash_poster_3 != blank %}
+        {{ section.settings.flash_poster_3 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_3_alt }}
+      {% endif %}
+      <a class="hero-frame__link" href="{{ section.settings.flash_poster_3_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_3_alt | default: 'Flash sale poster' }}"></a>
+    </article>
   </div>
   <div class="flash-sale-feature__dots" aria-hidden="true">
     <span></span>
@@ -193,6 +199,116 @@
       "type": "url",
       "id": "hero_link",
       "label": "Hero link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Main banner slider"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_banner_1",
+      "label": "Main banner image 1"
+    },
+    {
+      "type": "text",
+      "id": "main_banner_1_alt",
+      "label": "Main banner image 1 alt text",
+      "default": "SnatchingStore main banner 1"
+    },
+    {
+      "type": "url",
+      "id": "main_banner_1_link",
+      "label": "Main banner image 1 link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_banner_2",
+      "label": "Main banner image 2"
+    },
+    {
+      "type": "text",
+      "id": "main_banner_2_alt",
+      "label": "Main banner image 2 alt text",
+      "default": "SnatchingStore main banner 2"
+    },
+    {
+      "type": "url",
+      "id": "main_banner_2_link",
+      "label": "Main banner image 2 link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_banner_3",
+      "label": "Main banner image 3"
+    },
+    {
+      "type": "text",
+      "id": "main_banner_3_alt",
+      "label": "Main banner image 3 alt text",
+      "default": "SnatchingStore main banner 3"
+    },
+    {
+      "type": "url",
+      "id": "main_banner_3_link",
+      "label": "Main banner image 3 link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Flash sale poster slider"
+    },
+    {
+      "type": "image_picker",
+      "id": "flash_poster_1",
+      "label": "Flash sale poster 1"
+    },
+    {
+      "type": "text",
+      "id": "flash_poster_1_alt",
+      "label": "Flash sale poster 1 alt text",
+      "default": "SnatchingStore flash sale poster 1"
+    },
+    {
+      "type": "url",
+      "id": "flash_poster_1_link",
+      "label": "Flash sale poster 1 link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "flash_poster_2",
+      "label": "Flash sale poster 2"
+    },
+    {
+      "type": "text",
+      "id": "flash_poster_2_alt",
+      "label": "Flash sale poster 2 alt text",
+      "default": "SnatchingStore flash sale poster 2"
+    },
+    {
+      "type": "url",
+      "id": "flash_poster_2_link",
+      "label": "Flash sale poster 2 link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "flash_poster_3",
+      "label": "Flash sale poster 3"
+    },
+    {
+      "type": "text",
+      "id": "flash_poster_3_alt",
+      "label": "Flash sale poster 3 alt text",
+      "default": "SnatchingStore flash sale poster 3"
+    },
+    {
+      "type": "url",
+      "id": "flash_poster_3_link",
+      "label": "Flash sale poster 3 link",
       "default": "/collections/all"
     },
     {
