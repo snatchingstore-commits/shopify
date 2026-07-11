@@ -11,67 +11,65 @@
     {% endfor %}
   </aside>
 
-  <div class="hero-panel">
-    <div class="hero-panel__content">
-      <div class="hero-copy">
-        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
-        <h1>{{ section.settings.heading }}</h1>
-        <p>{{ section.settings.subheading }}</p>
-        <a class="button button--dark" href="{{ section.settings.hero_link }}">Shop deals</a>
-      </div>
-      <div class="hero-tiles" aria-label="Store highlights">
-        <div class="hero-tile">
-          <strong>Home upgrades</strong>
-          <span>Decor, organizers and useful finds.</span>
+  <div class="hero-panel hero-banner-frame" aria-label="Featured banner slider">
+    {% assign slide_index = 0 %}
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' and slide_index < 3 %}
+        {% assign slide_index = slide_index | plus: 1 %}
+        <article class="hero-frame__slide hero-frame__slide--{{ slide_index }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: block.settings.heading }}
+          {% endif %}
+          <div class="hero-frame__content">
+            <p class="eyebrow">{{ block.settings.kicker | default: section.settings.eyebrow }}</p>
+            <h1>{{ block.settings.heading | default: section.settings.heading }}</h1>
+            <p>{{ block.settings.text | default: section.settings.subheading }}</p>
+            <a class="button button--dark" href="{{ block.settings.link | default: section.settings.hero_link }}">
+              {{ block.settings.button_label | default: 'Shop deals' }}
+            </a>
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+    {% if slide_index == 0 %}
+      <article class="hero-frame__slide hero-frame__slide--1">
+        <div class="hero-frame__content">
+          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+          <h1>{{ section.settings.heading }}</h1>
+          <p>{{ section.settings.subheading }}</p>
+          <a class="button button--dark" href="{{ section.settings.hero_link }}">Shop deals</a>
         </div>
-        <div class="hero-tile">
-          <strong>Daily picks</strong>
-          <span>Rotating offers for quick discovery.</span>
-        </div>
-        <div class="hero-tile">
-          <strong>Multi-niche shopping</strong>
-          <span>Built to grow into more categories.</span>
-        </div>
-      </div>
-    </div>
+      </article>
+    {% endif %}
   </div>
-
-  <aside class="deal-panel" aria-label="Quick deals">
-    <h2>Today on SnatchingStore</h2>
-    <a class="mini-deal" href="{{ routes.all_products_collection_url }}">
-      <strong>Flash picks</strong>
-      <span>Limited-time product highlights</span>
-    </a>
-    <a class="mini-deal" href="{{ routes.search_url }}">
-      <strong>Find it fast</strong>
-      <span>Search across every niche</span>
-    </a>
-    <a class="mini-deal" href="/pages/contact">
-      <strong>Need help?</strong>
-      <span>Ask before you order</span>
-    </a>
-  </aside>
 </section>
 
-<section class="page-width promo-slider" aria-label="Featured promotions">
-  <div class="promo-slider__track">
+<section class="page-width flash-sale-feature" aria-label="Flash sale promotions">
+  <div class="flash-sale-feature__intro">
+    <p class="eyebrow">Limited time</p>
+    <h2>Flash Sale</h2>
+    <p>Fresh offers, quick deals, and short-run finds. Add your strongest sale posters here.</p>
+    <a class="button" href="{{ routes.all_products_collection_url }}">Shop offers</a>
+  </div>
+  <div class="flash-sale-feature__posters">
+    {% assign poster_index = 0 %}
     {% for block in section.blocks %}
-      {% if block.type == 'slide' %}
-        <article class="promo-slide promo-slide--{{ forloop.index }}" {{ block.shopify_attributes }}>
+      {% if block.type == 'slide' and poster_index < 3 %}
+        {% assign poster_index = poster_index | plus: 1 %}
+        <article class="flash-poster flash-poster--{{ poster_index }}" {{ block.shopify_attributes }}>
           {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 1500 | image_tag: class: 'promo-slide__image', loading: 'lazy', alt: block.settings.heading }}
+            {{ block.settings.image | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: block.settings.heading }}
           {% endif %}
-          <div class="promo-slide__content">
+          <div class="flash-poster__content">
             <p class="eyebrow">{{ block.settings.kicker }}</p>
             <h2>{{ block.settings.heading }}</h2>
             <p>{{ block.settings.text }}</p>
-            <a class="button" href="{{ block.settings.link }}">{{ block.settings.button_label }}</a>
           </div>
         </article>
       {% endif %}
     {% endfor %}
   </div>
-  <div class="promo-slider__dots" aria-hidden="true">
+  <div class="flash-sale-feature__dots" aria-hidden="true">
     <span></span>
     <span></span>
     <span></span>
