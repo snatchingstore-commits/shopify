@@ -34,9 +34,10 @@ body {
 }
 
 .site-header {
-  background: #183378;
-  color: #ffffff;
-  box-shadow: 0 4px 20px rgba(24, 51, 120, .22);
+  background:
+    linear-gradient(105deg, #ffffff 0%, #ffffff 54%, rgba(24, 51, 120, .1) 76%, rgba(24, 51, 120, .2) 100%);
+  color: #183378;
+  box-shadow: 0 4px 20px rgba(24, 51, 120, .12);
 }
 
 .header-search-toggle {
@@ -65,7 +66,7 @@ body {
   justify-self: center;
   justify-content: center;
   min-width: 0;
-  color: #ffffff;
+  color: #183378;
   transition: justify-self .2s ease;
 }
 
@@ -78,18 +79,18 @@ body {
 }
 
 .brand__mark {
-  color: #183378;
-  background: #ffffff;
-  border-color: #ffffff;
+  color: #ffffff;
+  background: #183378;
+  border-color: #183378;
 }
 
 .header-actions {
   justify-self: end;
-  color: #ffffff;
+  color: #183378;
 }
 
 .header-actions a {
-  color: #ffffff;
+  color: #183378;
 }
 
 .icon-button {
@@ -97,9 +98,9 @@ body {
   place-items: center;
   width: 42px;
   height: 42px;
-  border: 1px solid rgba(255,255,255,.36);
+  border: 1px solid rgba(24, 51, 120, .28);
   border-radius: 50%;
-  background: rgba(255,255,255,.1);
+  background: rgba(255,255,255,.68);
   cursor: pointer;
 }
 
@@ -107,7 +108,7 @@ body {
   position: relative;
   width: 17px;
   height: 17px;
-  border: 2px solid #ffffff;
+  border: 2px solid #183378;
   border-radius: 50%;
 }
 
@@ -118,7 +119,7 @@ body {
   bottom: -5px;
   width: 8px;
   height: 2px;
-  background: #ffffff;
+  background: #183378;
   border-radius: 999px;
   transform: rotate(45deg);
   transform-origin: center;
@@ -135,8 +136,8 @@ body {
   pointer-events: none;
   transform: translateY(-50%) translateX(12px);
   transition: max-width .25s ease, opacity .18s ease, transform .25s ease;
-  border-color: #ffffff;
-  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  border-color: #183378;
+  box-shadow: 0 10px 26px rgba(24, 51, 120, .16);
 }
 
 .header-search-form input {
