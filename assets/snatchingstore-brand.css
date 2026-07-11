@@ -301,8 +301,9 @@ body {
 .flash-sale-feature {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 760px);
+  justify-content: center;
+  gap: 16px;
   margin-bottom: 18px;
   width: min(100% - 32px, 1220px);
   margin-inline: auto;
@@ -315,13 +316,14 @@ body {
 
 .flash-sale-feature__intro,
 .flash-sale-feature__posters {
-  min-height: 240px;
+  min-height: 0;
+  aspect-ratio: 12 / 7;
 }
 
 .flash-sale-feature__intro {
   display: grid;
   align-content: center;
-  padding: clamp(22px, 3vw, 42px);
+  padding: clamp(18px, 2.4vw, 30px);
   color: #ffffff;
   background:
     radial-gradient(circle at 100% 0%, rgba(255,255,255,.2), transparent 32%),
@@ -337,13 +339,13 @@ body {
 .flash-sale-feature__intro h2 {
   margin: 0 0 10px;
   color: #ffffff;
-  font-size: clamp(34px, 4vw, 56px);
+  font-size: clamp(30px, 3.5vw, 46px);
   line-height: 1;
 }
 
 .flash-sale-feature__intro p {
   margin: 0 0 18px;
-  max-width: 420px;
+  max-width: 260px;
   color: rgba(255,255,255,.9);
 }
 
@@ -525,7 +527,15 @@ body {
 
   .flash-sale-feature__intro,
   .flash-sale-feature__posters {
-    min-height: 220px;
+    min-height: 0;
+  }
+
+  .flash-sale-feature__intro {
+    aspect-ratio: auto;
+  }
+
+  .flash-sale-feature__posters {
+    aspect-ratio: 12 / 7;
   }
 
   .quick-offer-cards {
