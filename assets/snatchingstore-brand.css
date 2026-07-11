@@ -33,12 +33,6 @@ body {
   display: none;
 }
 
-.site-header {
-  background:
-    linear-gradient(105deg, #ffffff 0%, #ffffff 54%, rgba(24, 51, 120, .1) 76%, rgba(24, 51, 120, .2) 100%);
-  color: #183378;
-  box-shadow: 0 4px 20px rgba(24, 51, 120, .12);
-}
 
 .header-search-toggle {
   position: absolute;
