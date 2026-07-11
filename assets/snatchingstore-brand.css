@@ -206,16 +206,17 @@ body {
   inset: 0;
   min-width: 0;
   opacity: 0;
-  animation: ssHeroSlider 30s infinite;
+  transform: scale(1.015);
+  animation: ssHeroSlider 18s infinite;
   background: #ffffff;
 }
 
 .hero-frame__slide--2 {
-  animation-delay: 10s;
+  animation-delay: 6s;
 }
 
 .hero-frame__slide--3 {
-  animation-delay: 20s;
+  animation-delay: 12s;
 }
 
 .hero-frame__image {
@@ -236,6 +237,8 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
+  display: block;
+  cursor: pointer;
 }
 
 .hero-frame__dots {
@@ -253,26 +256,52 @@ body {
   height: 5px;
   border-radius: 999px;
   background: rgba(24, 51, 120, .28);
+  animation: ssHeroDot 18s infinite;
 }
 
 .hero-frame__dots span:first-child {
   background: #183378;
 }
 
+.hero-frame__dots span:nth-child(2) {
+  animation-delay: 6s;
+}
+
+.hero-frame__dots span:nth-child(3) {
+  animation-delay: 12s;
+}
+
 @keyframes ssHeroSlider {
-  0%, 28% {
-    opacity: 1;
+  0% {
+    opacity: 0;
+    transform: scale(1.015);
   }
 
-  33%, 100% {
+  5%, 30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  36%, 100% {
     opacity: 0;
+    transform: scale(.995);
+  }
+}
+
+@keyframes ssHeroDot {
+  0%, 34% {
+    background: #183378;
+  }
+
+  35%, 100% {
+    background: rgba(24, 51, 120, .28);
   }
 }
 
 .flash-sale-feature {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(260px, .42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
   gap: 18px;
   margin-bottom: 18px;
   width: min(100% - 32px, 1220px);
@@ -286,7 +315,7 @@ body {
 
 .flash-sale-feature__intro,
 .flash-sale-feature__posters {
-  min-height: 280px;
+  min-height: 240px;
 }
 
 .flash-sale-feature__intro {
@@ -321,7 +350,7 @@ body {
 .flash-sale-feature__posters {
   position: relative;
   overflow: hidden;
-  background: #f7f9ff;
+  background: #ffffff;
   border: 1px solid #d9e1f2;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(24, 51, 120, .12);
@@ -333,20 +362,19 @@ body {
   display: grid;
   align-items: end;
   min-width: 0;
-  padding: clamp(18px, 3vw, 34px);
+  padding: 0;
   opacity: 0;
-  animation: ssFlashPosters 45s infinite;
-  background:
-    linear-gradient(180deg, rgba(24, 51, 120, 0), rgba(24, 51, 120, .86)),
-    #e9eefc;
+  transform: translateX(18px) scale(1.01);
+  animation: ssFlashPosters 24s infinite;
+  background: #ffffff;
 }
 
 .flash-poster--2 {
-  animation-delay: 15s;
+  animation-delay: 8s;
 }
 
 .flash-poster--3 {
-  animation-delay: 30s;
+  animation-delay: 16s;
 }
 
 .flash-poster__image {
@@ -354,30 +382,7 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.flash-poster__content {
-  position: relative;
-  z-index: 1;
-  max-width: 560px;
-  color: #ffffff;
-}
-
-.flash-poster__content .eyebrow,
-.flash-poster__content h2,
-.flash-poster__content p {
-  color: #ffffff;
-}
-
-.flash-poster__content h2 {
-  margin: 0 0 8px;
-  font-size: clamp(26px, 4vw, 44px);
-  line-height: 1.04;
-}
-
-.flash-poster__content p {
-  margin: 0;
+  object-fit: contain;
 }
 
 .flash-sale-feature__dots {
@@ -394,20 +399,46 @@ body {
   width: 26px;
   height: 5px;
   border-radius: 999px;
-  background: rgba(255,255,255,.62);
+  background: rgba(24, 51, 120, .25);
+  animation: ssFlashDot 24s infinite;
 }
 
 .flash-sale-feature__dots span:first-child {
-  background: #ffffff;
+  background: #183378;
+}
+
+.flash-sale-feature__dots span:nth-child(2) {
+  animation-delay: 8s;
+}
+
+.flash-sale-feature__dots span:nth-child(3) {
+  animation-delay: 16s;
 }
 
 @keyframes ssFlashPosters {
-  0%, 28% {
-    opacity: 1;
+  0% {
+    opacity: 0;
+    transform: translateX(18px) scale(1.01);
   }
 
-  33%, 100% {
+  6%, 30% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  37%, 100% {
     opacity: 0;
+    transform: translateX(-18px) scale(.995);
+  }
+}
+
+@keyframes ssFlashDot {
+  0%, 34% {
+    background: #183378;
+  }
+
+  35%, 100% {
+    background: rgba(24, 51, 120, .25);
   }
 }
 
@@ -494,7 +525,7 @@ body {
 
   .flash-sale-feature__intro,
   .flash-sale-feature__posters {
-    min-height: 230px;
+    min-height: 220px;
   }
 
   .quick-offer-cards {
