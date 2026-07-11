@@ -32,17 +32,13 @@ body {
 .top-strip__inner span:first-child {
   display: none;
 }
+
 .site-header {
-<<<<<<< HEAD
   background:
-    linear-gradient(105deg, #ffffff 0%, #ffffff 54%, rgba(24, 51, 120, .1) 76%, rgba(24, 51, 120, .2) 100%);
+    radial-gradient(circle at 100% 50%, rgba(24, 51, 120, .18) 0%, rgba(24, 51, 120, .1) 28%, rgba(24, 51, 120, .04) 52%, rgba(255,255,255,0) 72%),
+    #ffffff;
   color: #183378;
   box-shadow: 0 4px 20px rgba(24, 51, 120, .12);
-=======
-  background: #ffffffff;
-  color: #ffffff;
-  box-shadow: 0 4px 20px rgba(24, 51, 120, .22);
->>>>>>> 5abdc26446ef6664bb420d490f3133f23444a740
 }
 
 .header-search-toggle {
