@@ -14,7 +14,7 @@
   <div class="hero-panel hero-banner-frame" aria-label="Featured banner slider">
     <article class="hero-frame__slide hero-frame__slide--1">
       {% if section.settings.main_banner_1 != blank %}
-        {{ section.settings.main_banner_1 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_1_alt }}
+        {{ section.settings.main_banner_1 | image_url: width: 2400 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_1_alt }}
       {% else %}
         <div class="hero-frame__fallback"></div>
       {% endif %}
@@ -22,7 +22,7 @@
     </article>
     <article class="hero-frame__slide hero-frame__slide--2">
       {% if section.settings.main_banner_2 != blank %}
-        {{ section.settings.main_banner_2 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_2_alt }}
+        {{ section.settings.main_banner_2 | image_url: width: 2400 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_2_alt }}
       {% else %}
         <div class="hero-frame__fallback"></div>
       {% endif %}
@@ -30,7 +30,7 @@
     </article>
     <article class="hero-frame__slide hero-frame__slide--3">
       {% if section.settings.main_banner_3 != blank %}
-        {{ section.settings.main_banner_3 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_3_alt }}
+        {{ section.settings.main_banner_3 | image_url: width: 2400 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_3_alt }}
       {% else %}
         <div class="hero-frame__fallback"></div>
       {% endif %}
@@ -54,19 +54,19 @@
   <div class="flash-sale-feature__posters">
     <article class="flash-poster flash-poster--1">
       {% if section.settings.flash_poster_1 != blank %}
-        {{ section.settings.flash_poster_1 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_1_alt }}
+        {{ section.settings.flash_poster_1 | image_url: width: 2000 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_1_alt }}
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.flash_poster_1_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_1_alt | default: 'Flash sale poster' }}"></a>
     </article>
     <article class="flash-poster flash-poster--2">
       {% if section.settings.flash_poster_2 != blank %}
-        {{ section.settings.flash_poster_2 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_2_alt }}
+        {{ section.settings.flash_poster_2 | image_url: width: 2000 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_2_alt }}
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.flash_poster_2_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_2_alt | default: 'Flash sale poster' }}"></a>
     </article>
     <article class="flash-poster flash-poster--3">
       {% if section.settings.flash_poster_3 != blank %}
-        {{ section.settings.flash_poster_3 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_3_alt }}
+        {{ section.settings.flash_poster_3 | image_url: width: 2000 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_3_alt }}
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.flash_poster_3_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_3_alt | default: 'Flash sale poster' }}"></a>
     </article>
