@@ -182,13 +182,19 @@ body {
 }
 
 .market-shell {
-  grid-template-columns: 220px minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: 220px minmax(0, 980px);
   align-items: stretch;
+  justify-content: center;
+  gap: 16px;
+  width: min(100% - 32px, 1220px);
+  margin-inline: auto;
 }
 
 .hero-banner-frame {
   position: relative;
   min-height: 360px;
+  width: 100%;
   aspect-ratio: 16 / 5;
   overflow: hidden;
   background: #183378;
@@ -273,6 +279,8 @@ body {
   grid-template-columns: minmax(260px, .42fr) minmax(0, 1fr);
   gap: 0;
   margin-bottom: 18px;
+  width: min(100% - 32px, 1220px);
+  margin-inline: auto;
   overflow: hidden;
   border: 1px solid #d9e1f2;
   border-radius: 8px;
@@ -435,6 +443,7 @@ body {
 @media (max-width: 780px) {
   .market-shell {
     grid-template-columns: 1fr;
+    width: min(100% - 18px, 1220px);
   }
 
   .hero-banner-frame {
@@ -448,6 +457,7 @@ body {
 
   .flash-sale-feature {
     grid-template-columns: 1fr;
+    width: min(100% - 18px, 1220px);
   }
 
   .flash-sale-feature__intro,
