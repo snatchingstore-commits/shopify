@@ -19,28 +19,24 @@
         <article class="hero-frame__slide hero-frame__slide--{{ slide_index }}" {{ block.shopify_attributes }}>
           {% if block.settings.image != blank %}
             {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: block.settings.heading }}
+          {% else %}
+            <div class="hero-frame__fallback"></div>
           {% endif %}
-          <div class="hero-frame__content">
-            <p class="eyebrow">{{ block.settings.kicker | default: section.settings.eyebrow }}</p>
-            <h1>{{ block.settings.heading | default: section.settings.heading }}</h1>
-            <p>{{ block.settings.text | default: section.settings.subheading }}</p>
-            <a class="button button--dark" href="{{ block.settings.link | default: section.settings.hero_link }}">
-              {{ block.settings.button_label | default: 'Shop deals' }}
-            </a>
-          </div>
+          <a class="hero-frame__link" href="{{ block.settings.link | default: section.settings.hero_link }}" aria-label="{{ block.settings.heading | default: section.settings.heading }}"></a>
         </article>
       {% endif %}
     {% endfor %}
     {% if slide_index == 0 %}
       <article class="hero-frame__slide hero-frame__slide--1">
-        <div class="hero-frame__content">
-          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
-          <h1>{{ section.settings.heading }}</h1>
-          <p>{{ section.settings.subheading }}</p>
-          <a class="button button--dark" href="{{ section.settings.hero_link }}">Shop deals</a>
-        </div>
+        <div class="hero-frame__fallback"></div>
+        <a class="hero-frame__link" href="{{ section.settings.hero_link }}" aria-label="{{ section.settings.heading }}"></a>
       </article>
     {% endif %}
+    <div class="hero-frame__dots" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </section>
 
@@ -74,6 +70,17 @@
     <span></span>
     <span></span>
   </div>
+</section>
+
+<section class="page-width quick-offer-cards" aria-label="Quick shopping links">
+  <a class="quick-offer-card" href="{{ routes.all_products_collection_url }}">
+    <span>Flash Deals</span>
+    <strong>Limited-time discounts and fresh product picks.</strong>
+  </a>
+  <a class="quick-offer-card" href="{{ routes.all_products_collection_url }}">
+    <span>All Products</span>
+    <strong>Browse every item available on SnatchingStore.</strong>
+  </a>
 </section>
 
 <section class="page-width trust-band" aria-label="Shopping benefits">
