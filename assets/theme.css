@@ -30,8 +30,8 @@ body {
 }
 
 h1, h2, h3, h4, .brand {
-  font-family: 'Poppins', 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
-  letter-spacing: -.01em;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  letter-spacing: .01em;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -207,7 +207,8 @@ button, input { font: inherit; }
 .deal-panel h2,
 .shelf__heading h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .category-link {
@@ -461,20 +462,24 @@ button, input { font: inherit; }
   place-items: center;
   aspect-ratio: 1;
   overflow: hidden;
+  padding: 8px;
+  border: 1px solid var(--ss-line);
   border-radius: 7px;
-  background: var(--ss-cream);
+  background: #ffffff;
 }
 
 .product-card__media img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 4px;
 }
 
 .product-card__title {
   min-height: 42px;
   color: var(--ss-ink);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
   overflow: hidden;
 }
 
@@ -488,6 +493,7 @@ button, input { font: inherit; }
 .price {
   color: var(--ss-ink);
   font-weight: 800;
+  font-size: 17px;
 }
 
 .compare-price {
