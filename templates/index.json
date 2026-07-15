@@ -12,45 +12,45 @@
     "marketplace_home": {
       "type": "ss-marketplace-home",
       "blocks": {
-        "cat_home": {
+        "cat_plants": {
           "type": "category",
           "settings": {
-            "label": "Home Decor",
+            "label": "Plants",
             "link": "/collections/all"
           }
         },
-        "cat_kitchen": {
+        "cat_vases": {
           "type": "category",
           "settings": {
-            "label": "Kitchen & Dining",
+            "label": "Vases",
             "link": "/collections/all"
           }
         },
-        "cat_beauty": {
+        "cat_hanging": {
           "type": "category",
           "settings": {
-            "label": "Beauty & Care",
+            "label": "Hanging",
             "link": "/collections/all"
           }
         },
-        "cat_gadgets": {
+        "cat_ornaments": {
           "type": "category",
           "settings": {
-            "label": "Phones & Gadgets",
+            "label": "Ornaments",
             "link": "/collections/all"
           }
         },
-        "cat_fashion": {
+        "cat_frames": {
           "type": "category",
           "settings": {
-            "label": "Fashion",
+            "label": "Frames",
             "link": "/collections/all"
           }
         },
-        "cat_lifestyle": {
+        "cat_wall_clock": {
           "type": "category",
           "settings": {
-            "label": "Lifestyle",
+            "label": "Wall Clock",
             "link": "/collections/all"
           }
         },
@@ -86,12 +86,12 @@
         }
       },
       "block_order": [
-        "cat_home",
-        "cat_kitchen",
-        "cat_beauty",
-        "cat_gadgets",
-        "cat_fashion",
-        "cat_lifestyle",
+        "cat_plants",
+        "cat_vases",
+        "cat_hanging",
+        "cat_ornaments",
+        "cat_frames",
+        "cat_wall_clock",
         "slide_decor",
         "slide_multi",
         "slide_flash"
