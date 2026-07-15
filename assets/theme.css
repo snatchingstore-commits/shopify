@@ -436,8 +436,8 @@ button, input { font: inherit; }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .product-card {
@@ -462,7 +462,7 @@ button, input { font: inherit; }
   place-items: center;
   aspect-ratio: 1;
   overflow: hidden;
-  padding: 8px;
+  padding: 5px;
   border: 1px solid var(--ss-line);
   border-radius: 7px;
   background: #ffffff;
@@ -688,7 +688,7 @@ button, input { font: inherit; }
   .brand__logo { max-width: 168px; }
   .market-shell { grid-template-columns: 190px 1fr; }
   .deal-panel { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
-  .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .collection-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 

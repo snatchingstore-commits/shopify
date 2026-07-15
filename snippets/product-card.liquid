@@ -2,7 +2,7 @@
 <a class="product-card" href="{{ product.url }}">
   <span class="product-card__media">
     {% if product_image %}
-      {{ product_image | image_url: width: 520 | image_tag: loading: 'lazy', alt: product.title }}
+      {{ product_image | image_url: width: 720 | image_tag: loading: 'lazy', alt: product.title }}
     {% else %}
       {{ 'product-1' | placeholder_svg_tag }}
     {% endif %}
