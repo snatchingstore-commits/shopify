@@ -14,21 +14,30 @@
   <div class="hero-panel hero-banner-frame" aria-label="Featured banner slider">
     <article class="hero-frame__slide hero-frame__slide--1">
       {% if section.settings.main_banner_1 != blank %}
-        {{ section.settings.main_banner_1 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_1_alt }}
+        {{ section.settings.main_banner_1 | image_url: width: 2400 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_1_alt }}
       {% else %}
         <div class="hero-frame__fallback"></div>
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.main_banner_1_link | default: section.settings.hero_link }}" aria-label="{{ section.settings.main_banner_1_alt | default: 'Featured promotion' }}"></a>
     </article>
     <article class="hero-frame__slide hero-frame__slide--2">
+      {% if section.settings.main_banner_2 != blank %}
+        {{ section.settings.main_banner_2 | image_url: width: 2400 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_2_alt }}
+      {% else %}
+        <div class="hero-frame__fallback"></div>
+      {% endif %}
+      <a class="hero-frame__link" href="{{ section.settings.main_banner_2_link | default: section.settings.hero_link }}" aria-label="{{ section.settings.main_banner_2_alt | default: 'Featured promotion' }}"></a>
+    </article>
+    <article class="hero-frame__slide hero-frame__slide--3">
       {% if section.settings.main_banner_3 != blank %}
-        {{ section.settings.main_banner_3 | image_url: width: 1800 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_3_alt }}
+        {{ section.settings.main_banner_3 | image_url: width: 2400 | image_tag: class: 'hero-frame__image', loading: 'lazy', alt: section.settings.main_banner_3_alt }}
       {% else %}
         <div class="hero-frame__fallback"></div>
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.main_banner_3_link | default: section.settings.hero_link }}" aria-label="{{ section.settings.main_banner_3_alt | default: 'Featured promotion' }}"></a>
     </article>
     <div class="hero-frame__dots" aria-hidden="true">
+      <span></span>
       <span></span>
       <span></span>
     </div>
@@ -39,33 +48,63 @@
   <div class="flash-sale-feature__intro">
     <p class="eyebrow">Limited time</p>
     <h2>Flash Sale</h2>
-    <p>Fresh offers, quick deals, and short-run finds picked for your home.</p>
+    <p>Fresh offers, quick deals, and short-run finds. Add your strongest sale posters here.</p>
     <a class="button" href="{{ routes.all_products_collection_url }}">Shop offers</a>
   </div>
   <div class="flash-sale-feature__posters">
     <article class="flash-poster flash-poster--1">
       {% if section.settings.flash_poster_1 != blank %}
-        {{ section.settings.flash_poster_1 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_1_alt }}
+        {{ section.settings.flash_poster_1 | image_url: width: 2000 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_1_alt }}
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.flash_poster_1_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_1_alt | default: 'Flash sale poster' }}"></a>
     </article>
     <article class="flash-poster flash-poster--2">
       {% if section.settings.flash_poster_2 != blank %}
-        {{ section.settings.flash_poster_2 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_2_alt }}
+        {{ section.settings.flash_poster_2 | image_url: width: 2000 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_2_alt }}
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.flash_poster_2_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_2_alt | default: 'Flash sale poster' }}"></a>
     </article>
     <article class="flash-poster flash-poster--3">
       {% if section.settings.flash_poster_3 != blank %}
-        {{ section.settings.flash_poster_3 | image_url: width: 1100 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_3_alt }}
+        {{ section.settings.flash_poster_3 | image_url: width: 2000 | image_tag: class: 'flash-poster__image', loading: 'lazy', alt: section.settings.flash_poster_3_alt }}
       {% endif %}
       <a class="hero-frame__link" href="{{ section.settings.flash_poster_3_link | default: routes.all_products_collection_url }}" aria-label="{{ section.settings.flash_poster_3_alt | default: 'Flash sale poster' }}"></a>
     </article>
+    <div class="flash-sale-feature__dots" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
-  <div class="flash-sale-feature__dots" aria-hidden="true">
-    <span></span>
-    <span></span>
-    <span></span>
+</section>
+
+<section class="page-width quick-offer-cards" aria-label="Quick shopping links">
+  <a class="quick-offer-card" href="{{ routes.all_products_collection_url }}">
+    <span>Flash Deals</span>
+    <strong>Limited-time discounts and fresh product picks.</strong>
+  </a>
+  <a class="quick-offer-card" href="{{ routes.all_products_collection_url }}">
+    <span>All Products</span>
+    <strong>Browse every item available on SnatchingStore.</strong>
+  </a>
+</section>
+
+<section class="page-width trust-band" aria-label="Shopping benefits">
+  <div class="trust-item">
+    <strong>Secure checkout</strong>
+    <span>Protected Shopify payments</span>
+  </div>
+  <div class="trust-item">
+    <strong>Sharp offers</strong>
+    <span>Discount-first product shelves</span>
+  </div>
+  <div class="trust-item">
+    <strong>Easy browsing</strong>
+    <span>Categories and search up front</span>
+  </div>
+  <div class="trust-item">
+    <strong>Support ready</strong>
+    <span>Contact before or after order</span>
   </div>
 </section>
 
@@ -122,18 +161,6 @@
   </div>
 </section>
 
-<section class="page-width shelf">
-  <div class="shelf__heading">
-    <h2>All products</h2>
-    <a href="{{ routes.all_products_collection_url }}">See all</a>
-  </div>
-  <div class="product-grid">
-    {% for product in collections.all.products limit: 50 %}
-      {% render 'product-card', product: product %}
-    {% endfor %}
-  </div>
-</section>
-
 <section class="page-width newsletter">
   <div>
     <h2>Get the newest steals first</h2>
@@ -176,12 +203,12 @@
     },
     {
       "type": "header",
-      "content": "Main banner slider"
+      "content": "Main banner slider 1920 x 600px"
     },
     {
       "type": "image_picker",
       "id": "main_banner_1",
-      "label": "Main banner image 1"
+      "label": "Main banner image 1 - 1920 x 600px"
     },
     {
       "type": "text",
@@ -198,7 +225,7 @@
     {
       "type": "image_picker",
       "id": "main_banner_2",
-      "label": "Main banner image 2"
+      "label": "Main banner image 2 - 1920 x 600px"
     },
     {
       "type": "text",
@@ -215,7 +242,7 @@
     {
       "type": "image_picker",
       "id": "main_banner_3",
-      "label": "Main banner image 3"
+      "label": "Main banner image 3 - 1920 x 600px"
     },
     {
       "type": "text",
@@ -231,12 +258,12 @@
     },
     {
       "type": "header",
-      "content": "Flash sale poster slider"
+      "content": "Flash poster slider 1200 x 700px"
     },
     {
       "type": "image_picker",
       "id": "flash_poster_1",
-      "label": "Flash sale poster 1"
+      "label": "Flash sale poster 1 - 1200 x 700px"
     },
     {
       "type": "text",
@@ -253,7 +280,7 @@
     {
       "type": "image_picker",
       "id": "flash_poster_2",
-      "label": "Flash sale poster 2"
+      "label": "Flash sale poster 2 - 1200 x 700px"
     },
     {
       "type": "text",
@@ -270,7 +297,7 @@
     {
       "type": "image_picker",
       "id": "flash_poster_3",
-      "label": "Flash sale poster 3"
+      "label": "Flash sale poster 3 - 1200 x 700px"
     },
     {
       "type": "text",
