@@ -776,6 +776,15 @@ body {
   border-color: #e4e9f6;
 }
 
+.product-card__cart-button {
+  color: #ffffff;
+  background: #183378;
+}
+
+.product-card__cart-button:hover {
+  background: #10265f;
+}
+
 .product-card__media {
   background: #ffffff;
   overflow: hidden;
