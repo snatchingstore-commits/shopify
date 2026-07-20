@@ -97,39 +97,33 @@ body {
 .icon-button {
   display: inline-grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(24, 51, 120, .28);
   border-radius: 50%;
-  background: rgba(255,255,255,.78);
-  box-shadow: 0 8px 18px rgba(24, 51, 120, .12);
+  background: rgba(255,255,255,.68);
   cursor: pointer;
-  overflow: hidden;
 }
 
 .search-icon {
   position: relative;
-  width: 20px;
-  height: 20px;
-  margin: -4px 0 0 -4px;
-  border: 4px solid #238bdc;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #183378;
   border-radius: 50%;
-  background: #e4f5ff;
-  box-shadow: inset 0 0 0 1px rgba(24, 51, 120, .08);
-  transform: rotate(0deg);
 }
 
 .search-icon::after {
   content: "";
   position: absolute;
-  right: -13px;
-  bottom: -9px;
-  width: 18px;
-  height: 7px;
+  right: -7px;
+  bottom: -5px;
+  width: 8px;
+  height: 2px;
   background: #183378;
-  border-radius: 999px 999px 999px 999px;
+  border-radius: 999px;
   transform: rotate(45deg);
-  transform-origin: left center;
+  transform-origin: center;
 }
 
 .header-search-form {
@@ -143,38 +137,15 @@ body {
   pointer-events: none;
   transform: translateY(-50%) translateX(12px);
   transition: max-width .25s ease, opacity .18s ease, transform .25s ease;
-  grid-template-columns: 1fr auto auto;
   border-color: #183378;
   box-shadow: 0 10px 26px rgba(24, 51, 120, .16);
 }
 
 .header-search-form input {
-  min-height: 42px;
   color: #183378;
 }
 
-.header-search-form button {
-  min-width: 88px;
-  padding: 0 18px;
-  color: #ffffff;
-  background: #183378;
-  border-left: 1px solid #183378;
-}
-
-.header-search-close {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  min-height: 42px;
-  color: #183378;
-  background: #ffffff;
-  border-left: 1px solid #d9e1f2;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
-}
-
+.header-search-form button,
 .button {
   color: #183378;
   background: #ffffff;
@@ -598,6 +569,7 @@ body {
   border-color: #e4e9f6;
 }
 
+
 .product-page {
   padding-top: 14px;
 }
@@ -878,7 +850,6 @@ body {
   color: #5e6f94;
   font-size: 13px;
 }
-
 .sale-badge {
   color: #183378;
   background: #e9eefc;
@@ -931,6 +902,7 @@ body {
     width: min(100% - 18px, 1220px);
   }
 
+  
   .product-detail--marketplace {
     grid-template-columns: 1fr;
   }
