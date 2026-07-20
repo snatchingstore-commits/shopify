@@ -7,4 +7,10 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{}
+{
+  "general": {
+    "search": {
+      "placeholder": "Search products"
+    }
+  }
+}

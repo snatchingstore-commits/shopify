@@ -1,18 +1,69 @@
-<section class="page-width template-page">
-  <article class="product-detail">
-    <div class="product-detail__media">
-      {% for media in product.media %}
-        {% if media.media_type == 'image' %}
-          {{ media.preview_image | image_url: width: 1100 | image_tag: loading: 'lazy', alt: product.title }}
-        {% endif %}
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag }}
-      {% endfor %}
+<section class="page-width template-page product-page">
+  <nav class="product-breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a>
+    <span>/</span>
+    <a href="{{ routes.all_products_collection_url }}">All Products</a>
+    <span>/</span>
+    <span>{{ product.title }}</span>
+  </nav>
+
+  <article class="product-detail product-detail--marketplace">
+    <div class="product-gallery" data-product-gallery>
+      <div class="product-gallery__main">
+        <button class="product-gallery__arrow product-gallery__arrow--prev" type="button" aria-label="Previous product image" data-gallery-prev>&lsaquo;</button>
+        <div class="product-gallery__viewport">
+          {% assign image_index = 0 %}
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <div class="product-gallery__slide{% if image_index == 0 %} is-active{% endif %}" data-gallery-slide>
+                {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: product.title }}
+              </div>
+              {% assign image_index = image_index | plus: 1 %}
+            {% endif %}
+          {% else %}
+            <div class="product-gallery__slide is-active" data-gallery-slide>
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+          {% endfor %}
+        </div>
+        <button class="product-gallery__arrow product-gallery__arrow--next" type="button" aria-label="Next product image" data-gallery-next>&rsaquo;</button>
+      </div>
+
+      {% if product.media.size > 1 %}
+        <div class="product-gallery__thumbs" aria-label="Product image thumbnails">
+          {% assign thumb_index = 0 %}
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <button class="product-gallery__thumb{% if thumb_index == 0 %} is-active{% endif %}" type="button" data-gallery-thumb="{{ thumb_index }}" aria-label="Show image {{ thumb_index | plus: 1 }}">
+                {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: product.title }}
+              </button>
+              {% assign thumb_index = thumb_index | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
 
     <div class="product-detail__info">
+      {% if product.compare_at_price > product.price %}
+        <div class="product-flash-strip">
+          <strong>Flash Sale</strong>
+          <span>Limited time offer</span>
+        </div>
+      {% endif %}
+
       <h1>{{ product.title }}</h1>
-      <div class="price-row">
+
+      <div class="product-rating-row" aria-label="Product rating">
+        <span class="product-stars" aria-hidden="true">*****</span>
+        <a href="#product-description">Ratings and questions</a>
+      </div>
+
+      <div class="product-meta-line">
+        <span>Brand: <strong>{{ product.vendor | default: 'SnatchingStore' }}</strong></span>
+      </div>
+
+      <div class="price-row product-price-row">
         <span class="price">{{ product.price | money }}</span>
         {% if product.compare_at_price > product.price %}
           <span class="compare-price">{{ product.compare_at_price | money }}</span>
@@ -20,9 +71,10 @@
         {% endif %}
       </div>
 
-      {% form 'product', product, class: 'product-form' %}
+      {% form 'product', product, class: 'product-form product-form--marketplace' %}
         {% unless product.has_only_default_variant %}
-          <select name="id">
+          <label class="product-form__label" for="ProductVariant-{{ section.id }}">Options</label>
+          <select id="ProductVariant-{{ section.id }}" name="id">
             {% for variant in product.variants %}
               <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
                 {{ variant.title }} - {{ variant.price | money }}
@@ -32,18 +84,80 @@
         {% else %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         {% endunless %}
-        <input class="quantity-input" type="number" name="quantity" min="1" value="1">
-        <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
-          {% if product.available %}Add to cart{% else %}Sold out{% endif %}
-        </button>
+
+        <label class="product-form__label" for="ProductQuantity-{{ section.id }}">Quantity</label>
+        <input id="ProductQuantity-{{ section.id }}" class="quantity-input" type="number" name="quantity" min="1" value="1">
+
+        <div class="product-form__actions">
+          <button class="button button--dark" type="submit" name="return_to" value="/checkout" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}Buy Now{% else %}Sold out{% endif %}
+          </button>
+          <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
+          </button>
+        </div>
       {% endform %}
 
-      <div class="rte">
+      <div id="product-description" class="rte product-description">
         {{ product.description }}
       </div>
     </div>
+
+    <aside class="product-service-panel" aria-label="Delivery and service details">
+      <section>
+        <h2>Delivery Options</h2>
+        <div class="service-row">
+          <span class="service-icon">D</span>
+          <div>
+            <strong>Standard Delivery</strong>
+            <p>Fast local delivery with tracking.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <span class="service-icon">R</span>
+          <div>
+            <strong>Easy Returns</strong>
+            <p>Return eligible items within 14 days.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <span class="service-icon">S</span>
+          <div>
+            <strong>Secure Checkout</strong>
+            <p>Safe payment and order confirmation.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Sold by</h2>
+        <strong>SnatchingStore</strong>
+        <p>Multi-niche finds, daily deals and useful home upgrades.</p>
+      </section>
+    </aside>
   </article>
 </section>
+
+<script>
+  document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
+    const slides = Array.from(gallery.querySelectorAll('[data-gallery-slide]'));
+    const thumbs = Array.from(gallery.querySelectorAll('[data-gallery-thumb]'));
+    const prev = gallery.querySelector('[data-gallery-prev]');
+    const next = gallery.querySelector('[data-gallery-next]');
+    let active = 0;
+
+    function show(index) {
+      if (!slides.length) return;
+      active = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === active));
+      thumbs.forEach((thumb, thumbIndex) => thumb.classList.toggle('is-active', thumbIndex === active));
+    }
+
+    thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => show(index)));
+    if (prev) prev.addEventListener('click', () => show(active - 1));
+    if (next) next.addEventListener('click', () => show(active + 1));
+  });
+</script>
 
 {% schema %}
 {
