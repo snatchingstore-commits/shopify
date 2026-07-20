@@ -569,6 +569,15 @@ body {
   border-color: #e4e9f6;
 }
 
+.product-card__media {
+  background: #ffffff;
+}
+
+.product-card__media img {
+  object-fit: contain;
+  padding: 8px;
+}
+
 
 .product-page {
   padding-top: 14px;

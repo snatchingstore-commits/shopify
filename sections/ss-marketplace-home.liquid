@@ -1,4 +1,3 @@
-{% assign featured_collection = section.settings.featured_collection | default: collections.all %}
 {% assign deal_collection = section.settings.deal_collection | default: collections.all %}
 
 <section class="page-width market-shell">
@@ -78,48 +77,30 @@
   </div>
 </section>
 
-<section class="page-width quick-offer-cards" aria-label="Quick shopping links">
-  <a class="quick-offer-card" href="{{ routes.all_products_collection_url }}">
-    <span>Flash Deals</span>
-    <strong>Limited-time discounts and fresh product picks.</strong>
-  </a>
-  <a class="quick-offer-card" href="{{ routes.all_products_collection_url }}">
-    <span>All Products</span>
-    <strong>Browse every item available on SnatchingStore.</strong>
-  </a>
-</section>
-
-<section class="page-width trust-band" aria-label="Shopping benefits">
-  <div class="trust-item">
-    <strong>Secure checkout</strong>
-    <span>Protected Shopify payments</span>
-  </div>
-  <div class="trust-item">
-    <strong>Sharp offers</strong>
-    <span>Discount-first product shelves</span>
-  </div>
-  <div class="trust-item">
-    <strong>Easy browsing</strong>
-    <span>Categories and search up front</span>
-  </div>
-  <div class="trust-item">
-    <strong>Support ready</strong>
-    <span>Contact before or after order</span>
-  </div>
-</section>
-
 <section class="page-width shelf">
   <div class="shelf__heading">
-    <h2>{{ section.settings.featured_title }}</h2>
-    <a href="{{ featured_collection.url | default: routes.all_products_collection_url }}">See all</a>
+    <h2>{{ section.settings.deal_title }}</h2>
+    <a href="{{ deal_collection.url | default: routes.all_products_collection_url }}">See all</a>
   </div>
   <div class="product-grid">
-    {% for product in featured_collection.products limit: 10 %}
+    {% for product in deal_collection.products limit: 10 %}
       {% render 'product-card', product: product %}
     {% else %}
       {% for product in collections.all.products limit: 10 %}
         {% render 'product-card', product: product %}
       {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-width shelf">
+  <div class="shelf__heading">
+    <h2>All Products</h2>
+    <a href="{{ routes.all_products_collection_url }}">See all</a>
+  </div>
+  <div class="product-grid">
+    {% for product in collections.all.products limit: 20 %}
+      {% render 'product-card', product: product %}
     {% endfor %}
   </div>
 </section>
@@ -141,22 +122,6 @@
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Kitchen</a>
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Fashion</a>
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Lifestyle</a>
-    {% endfor %}
-  </div>
-</section>
-
-<section class="page-width shelf">
-  <div class="shelf__heading">
-    <h2>{{ section.settings.deal_title }}</h2>
-    <a href="{{ deal_collection.url | default: routes.all_products_collection_url }}">See all</a>
-  </div>
-  <div class="product-grid">
-    {% for product in deal_collection.products limit: 10 %}
-      {% render 'product-card', product: product %}
-    {% else %}
-      {% for product in collections.all.products limit: 10 %}
-        {% render 'product-card', product: product %}
-      {% endfor %}
     {% endfor %}
   </div>
 </section>
