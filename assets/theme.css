@@ -454,7 +454,7 @@ button, input { font: inherit; }
 .product-card__media {
   display: grid;
   place-items: center;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 7px;
   background: #ffffff;

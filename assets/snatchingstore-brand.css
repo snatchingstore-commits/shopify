@@ -572,6 +572,7 @@ body {
 .product-card__media {
   background: #ffffff;
   overflow: hidden;
+  aspect-ratio: 4 / 5;
 }
 
 .product-card__media img {
