@@ -15,42 +15,42 @@
         "cat_home": {
           "type": "category",
           "settings": {
-            "label": "Home Decor",
+            "label": "Artificial Plants",
             "link": "/collections/all"
           }
         },
         "cat_kitchen": {
           "type": "category",
           "settings": {
-            "label": "Kitchen & Dining",
+            "label": "Wall Planters",
             "link": "/collections/all"
           }
         },
         "cat_beauty": {
           "type": "category",
           "settings": {
-            "label": "Beauty & Care",
+            "label": "Hanging Decor",
             "link": "/collections/all"
           }
         },
         "cat_gadgets": {
           "type": "category",
           "settings": {
-            "label": "Phones & Gadgets",
+            "label": "Glass Jar Planters",
             "link": "/collections/all"
           }
         },
         "cat_fashion": {
           "type": "category",
           "settings": {
-            "label": "Fashion",
+            "label": "Mini Bottle Decor",
             "link": "/collections/all"
           }
         },
         "cat_lifestyle": {
           "type": "category",
           "settings": {
-            "label": "Lifestyle",
+            "label": "All Products",
             "link": "/collections/all"
           }
         },

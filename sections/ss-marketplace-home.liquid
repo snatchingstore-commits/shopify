@@ -1,3 +1,4 @@
+{% assign featured_collection = section.settings.featured_collection | default: collections.all %}
 {% assign deal_collection = section.settings.deal_collection | default: collections.all %}
 
 <section class="page-width market-shell">
@@ -7,6 +8,12 @@
       {% if block.type == 'category' %}
         <a class="category-link" href="{{ block.settings.link }}">{{ block.settings.label }}</a>
       {% endif %}
+    {% else %}
+      {% for collection in collections limit: 8 %}
+        {% unless collection.handle == 'frontpage' %}
+          <a class="category-link" href="{{ collection.url }}">{{ collection.title }}</a>
+        {% endunless %}
+      {% endfor %}
     {% endfor %}
   </aside>
 
@@ -79,11 +86,11 @@
 
 <section class="page-width shelf">
   <div class="shelf__heading">
-    <h2>{{ section.settings.deal_title }}</h2>
-    <a href="{{ deal_collection.url | default: routes.all_products_collection_url }}">See all</a>
+    <h2>{{ section.settings.featured_title }}</h2>
+    <a href="{{ featured_collection.url | default: routes.all_products_collection_url }}">See all</a>
   </div>
   <div class="product-grid">
-    {% for product in deal_collection.products limit: 10 %}
+    {% for product in featured_collection.products limit: 10 %}
       {% render 'product-card', product: product %}
     {% else %}
       {% for product in collections.all.products limit: 10 %}
@@ -95,12 +102,16 @@
 
 <section class="page-width shelf">
   <div class="shelf__heading">
-    <h2>All Products</h2>
-    <a href="{{ routes.all_products_collection_url }}">See all</a>
+    <h2>{{ section.settings.deal_title }}</h2>
+    <a href="{{ deal_collection.url | default: routes.all_products_collection_url }}">See all</a>
   </div>
   <div class="product-grid">
-    {% for product in collections.all.products limit: 20 %}
+    {% for product in deal_collection.products limit: 10 %}
       {% render 'product-card', product: product %}
+    {% else %}
+      {% for product in collections.all.products limit: 10 %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
     {% endfor %}
   </div>
 </section>
@@ -122,6 +133,18 @@
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Kitchen</a>
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Fashion</a>
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Lifestyle</a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-width shelf">
+  <div class="shelf__heading">
+    <h2>All Products</h2>
+    <a href="{{ routes.all_products_collection_url }}">See all</a>
+  </div>
+  <div class="product-grid">
+    {% for product in collections.all.products limit: 20 %}
+      {% render 'product-card', product: product %}
     {% endfor %}
   </div>
 </section>
@@ -364,13 +387,12 @@
     {
       "name": "Marketplace homepage",
       "blocks": [
-        { "type": "category", "settings": { "label": "Home Decor", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Kitchen & Dining", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Beauty & Care", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Phones & Gadgets", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Fashion", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Lifestyle", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Seasonal Deals", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Artificial Plants", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Wall Planters", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Hanging Decor", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Glass Jar Planters", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Mini Bottle Decor", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "All Products", "link": "/collections/all" } },
         { "type": "slide", "settings": { "kicker": "SnatchingStore picks", "heading": "Home decor deals that feel premium", "text": "Feature planters, vases, wall pieces and decorative finds with a strong sale message.", "button_label": "Shop decor", "link": "/collections/all" } },
         { "type": "slide", "settings": { "kicker": "New niches coming", "heading": "Gadgets, beauty and lifestyle in one store", "text": "Use this banner to announce new product categories as you expand.", "button_label": "Explore", "link": "/collections/all" } },
         { "type": "slide", "settings": { "kicker": "Flash shelf", "heading": "Deals made for quick discovery", "text": "Highlight best sellers and fast-moving discounts with a marketplace feel.", "button_label": "View offers", "link": "/collections/all" } }
