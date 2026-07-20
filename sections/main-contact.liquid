@@ -1,0 +1,47 @@
+<section class="page-width template-page contact-page">
+  <div class="shelf contact-page__panel">
+    <div class="shelf__heading">
+      <h1>{{ section.settings.heading }}</h1>
+    </div>
+    <div class="contact-page__grid">
+      <div class="rte">
+        {{ section.settings.content }}
+        {% if page.content != blank %}
+          {{ page.content }}
+        {% endif %}
+      </div>
+      {% form 'contact', class: 'contact-form' %}
+        {% if form.posted_successfully? %}
+          <p class="form-message form-message--success">Thanks, your message has been sent.</p>
+        {% endif %}
+        {% if form.errors %}
+          <p class="form-message form-message--error">Please check the form and try again.</p>
+        {% endif %}
+        <input type="text" name="contact[name]" placeholder="Name" required>
+        <input type="email" name="contact[email]" placeholder="Email" required>
+        <textarea name="contact[body]" rows="6" placeholder="Message" required></textarea>
+        <button class="button" type="submit">Send message</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact us"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Intro text",
+      "default": "<p>Need help with an order or product? Send us a message and we will reply as soon as possible.</p>"
+    }
+  ]
+}
+{% endschema %}

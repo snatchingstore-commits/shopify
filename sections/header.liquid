@@ -36,7 +36,8 @@
       </label>
       <a href="{{ routes.account_login_url }}">Login</a>
       <a href="{{ routes.account_register_url }}">Sign up</a>
-      <label class="header-cart-button" for="HeaderCartToggle" aria-label="Open cart">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</label>
+      <a class="header-checkout-link" href="/checkout">Checkout</a>
+      <label class="header-cart-button" for="HeaderCartToggle" aria-label="Open cart" data-cart-count>Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</label>
     </nav>
 
     <div class="cart-drawer-shell" aria-label="Cart drawer">
@@ -47,44 +48,42 @@
           <label class="cart-drawer__close" for="HeaderCartToggle" aria-label="Close cart">x</label>
         </div>
 
-        {% if cart.empty? %}
-          <div class="cart-drawer__empty">
-            <p>Your cart is empty.</p>
-            <a class="button" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
-          </div>
-        {% else %}
-          <form class="cart-drawer__form" action="{{ routes.cart_url }}" method="post">
-            <div class="cart-drawer__items">
-              {% for item in cart.items %}
-                <div class="cart-drawer__item">
-                  <a class="cart-drawer__media" href="{{ item.url }}">
-                    {% if item.image %}
-                      {{ item.image | image_url: width: 180 | image_tag: loading: 'lazy', alt: item.product.title }}
-                    {% endif %}
-                  </a>
-                  <div class="cart-drawer__item-info">
-                    <a href="{{ item.url }}"><strong>{{ item.product.title }}</strong></a>
-                    {% unless item.product.has_only_default_variant %}
-                      <span>{{ item.variant.title }}</span>
-                    {% endunless %}
-                    <span>{{ item.final_line_price | money }}</span>
-                    <input class="quantity-input" type="number" name="updates[]" min="0" value="{{ item.quantity }}" aria-label="Quantity for {{ item.product.title }}">
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
+        <div class="cart-drawer__empty{% unless cart.empty? %} is-hidden{% endunless %}" data-cart-empty>
+          <p>Your cart is empty.</p>
+          <a class="button" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+        </div>
 
-            <div class="cart-drawer__footer">
-              <div class="cart-drawer__total">
-                <span>Total</span>
-                <strong>{{ cart.total_price | money }}</strong>
+        <form class="cart-drawer__form{% if cart.empty? %} is-hidden{% endif %}" action="{{ routes.cart_url }}" method="post" data-cart-form>
+          <div class="cart-drawer__items" data-cart-items>
+            {% for item in cart.items %}
+              <div class="cart-drawer__item">
+                <a class="cart-drawer__media" href="{{ item.url }}">
+                  {% if item.image %}
+                    {{ item.image | image_url: width: 180 | image_tag: loading: 'lazy', alt: item.product.title }}
+                  {% endif %}
+                </a>
+                <div class="cart-drawer__item-info">
+                  <a href="{{ item.url }}"><strong>{{ item.product.title }}</strong></a>
+                  {% unless item.product.has_only_default_variant %}
+                    <span>{{ item.variant.title }}</span>
+                  {% endunless %}
+                  <span>{{ item.final_line_price | money }}</span>
+                  <input class="quantity-input" type="number" name="updates[]" min="0" value="{{ item.quantity }}" aria-label="Quantity for {{ item.product.title }}">
+                </div>
               </div>
-              <button class="button button--dark" type="submit" name="update">Update cart</button>
-              <button class="button" type="submit" name="checkout">Checkout</button>
-              <a class="cart-drawer__view" href="{{ routes.cart_url }}">View full cart</a>
+            {% endfor %}
+          </div>
+
+          <div class="cart-drawer__footer">
+            <div class="cart-drawer__total">
+              <span>Total</span>
+              <strong data-cart-total>{{ cart.total_price | money }}</strong>
             </div>
-          </form>
-        {% endif %}
+            <button class="button button--dark" type="submit" name="update">Update cart</button>
+            <button class="button" type="submit" name="checkout">Checkout</button>
+            <a class="cart-drawer__view" href="{{ routes.cart_url }}">View full cart</a>
+          </div>
+        </form>
       </aside>
     </div>
   </div>

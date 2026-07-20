@@ -110,6 +110,13 @@ body {
   cursor: pointer;
 }
 
+.header-checkout-link {
+  padding: 0 12px;
+  color: #ffffff !important;
+  background: #183378;
+  border-radius: 999px;
+}
+
 .icon-button {
   display: inline-grid;
   place-items: center;
@@ -282,6 +289,11 @@ body {
   min-height: 0;
 }
 
+.cart-drawer__empty.is-hidden,
+.cart-drawer__form.is-hidden {
+  display: none;
+}
+
 .cart-drawer__empty {
   display: grid;
   align-content: center;
@@ -376,6 +388,78 @@ body {
   justify-self: center;
   color: #183378;
   font-weight: 800;
+}
+
+.product-card__cart-button.is-loading {
+  opacity: .7;
+  cursor: wait;
+}
+
+.product-card__cart-button.is-loading svg {
+  animation: ssCartPulse .7s ease-in-out infinite alternate;
+}
+
+.ecommerce-info-page__panel,
+.contact-page__panel {
+  max-width: 920px;
+}
+
+.ecommerce-info-page__content {
+  display: grid;
+  gap: 12px;
+  color: #183378;
+}
+
+.contact-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  gap: 20px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid #d9e1f2;
+  border-radius: 8px;
+  padding: 12px 13px;
+  color: #183378;
+  background: #ffffff;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.form-message {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.form-message--success {
+  color: #0f5132;
+  background: #d1e7dd;
+}
+
+.form-message--error {
+  color: #842029;
+  background: #f8d7da;
+}
+
+@keyframes ssCartPulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(.86);
+  }
 }
 
 .nav-row {
@@ -1174,10 +1258,20 @@ body {
   .header-actions {
     gap: 8px;
     font-size: 14px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .header-cart-button {
     min-height: 36px;
+  }
+
+  .header-checkout-link {
+    padding: 0 10px;
+  }
+
+  .contact-page__grid {
+    grid-template-columns: 1fr;
   }
 
   .search-toggle-button,
@@ -1217,6 +1311,10 @@ body {
   }
 
   .header-cart-button {
+    font-size: 13px;
+  }
+
+  .header-checkout-link {
     font-size: 13px;
   }
 
