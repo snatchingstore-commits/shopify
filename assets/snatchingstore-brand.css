@@ -107,28 +107,22 @@ body {
   overflow: hidden;
 }
 
-.search-icon {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  margin: -4px 0 0 -4px;
-  border: 4px solid #238bdc;
-  border-radius: 50%;
-  background: #e4f5ff;
-  box-shadow: inset 0 0 0 1px rgba(24, 51, 120, .08);
+.search-icon-svg {
+  width: 30px;
+  height: 30px;
+  overflow: visible;
 }
 
-.search-icon::after {
-  content: "";
-  position: absolute;
-  right: -13px;
-  bottom: -9px;
-  width: 18px;
-  height: 7px;
-  background: #183378;
-  border-radius: 999px;
-  transform: rotate(45deg);
-  transform-origin: left center;
+.search-icon-svg circle {
+  fill: #e4f5ff;
+  stroke: #238bdc;
+  stroke-width: 7;
+}
+
+.search-icon-svg line {
+  stroke: #183378;
+  stroke-width: 8;
+  stroke-linecap: round;
 }
 
 .header-search-form {

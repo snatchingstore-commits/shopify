@@ -28,7 +28,10 @@
 
     <nav class="header-actions" aria-label="Customer links">
       <label class="icon-button search-toggle-button" for="HeaderSearchToggle" aria-label="Open search">
-        <span class="search-icon" aria-hidden="true"></span>
+        <svg class="search-icon-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <circle cx="26" cy="26" r="17"></circle>
+          <line x1="39" y1="39" x2="54" y2="54"></line>
+        </svg>
       </label>
       <a href="{{ routes.account_url }}">Account</a>
       <a href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
