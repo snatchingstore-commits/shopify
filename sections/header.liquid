@@ -23,6 +23,7 @@
     <form class="search-form header-search-form" action="{{ routes.search_url }}" method="get" role="search">
       <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products">
       <button type="submit">Search</button>
+      <label class="header-search-close" for="HeaderSearchToggle" aria-label="Close search">x</label>
     </form>
 
     <nav class="header-actions" aria-label="Customer links">
