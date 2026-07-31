@@ -60,9 +60,9 @@ body {
 .header-main {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(120px, 1fr) auto minmax(420px, 1fr);
+  grid-template-columns: minmax(80px, 1fr) minmax(320px, 430px) minmax(460px, 1fr);
   align-items: center;
-  gap: 16px;
+  gap: 28px;
   min-height: 124px;
   padding: 14px 0;
 }
@@ -80,7 +80,7 @@ body {
 }
 
 .brand__logo {
-  width: min(470px, 36vw);
+  width: min(430px, 31vw);
   height: 96px;
   max-width: none;
   max-height: none;
@@ -98,7 +98,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
   color: #183378;
   white-space: nowrap;
@@ -1225,6 +1225,28 @@ body {
 .footer p,
 .footer a {
   color: #eef3ff;
+}
+
+@media (max-width: 1120px) {
+  .header-main {
+    grid-template-columns: minmax(40px, 1fr) minmax(260px, 360px) minmax(380px, 1fr);
+    gap: 18px;
+  }
+
+  .brand__logo {
+    width: min(360px, 32vw);
+    height: 84px;
+  }
+
+  .header-actions {
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .header-action-link,
+  .header-cart-button {
+    padding: 0 7px;
+  }
 }
 
 @media (max-width: 780px) {
