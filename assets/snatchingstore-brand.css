@@ -1281,9 +1281,10 @@ body {
   }
 
   .header-main {
-    grid-template-columns: 1fr auto;
-    min-height: 112px;
-    padding: 12px 0;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 12px 0 14px;
+    gap: 8px;
   }
 
   .header-spacer {
@@ -1291,21 +1292,34 @@ body {
   }
 
   .brand {
-    justify-self: start;
+    justify-self: center;
+    width: 100%;
   }
 
   .brand__logo {
-    width: min(340px, 56vw);
-    height: 82px;
+    display: block;
+    width: min(340px, 88vw);
+    height: 74px;
     max-width: none;
     max-height: none;
+    margin: 0 auto;
   }
 
   .header-actions {
+    justify-self: stretch;
+    width: 100%;
     gap: 6px;
     font-size: 13px;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .header-actions::-webkit-scrollbar {
+    display: none;
   }
 
   .header-action-link,
@@ -1350,26 +1364,27 @@ body {
   }
 
   .header-main {
-    gap: 10px;
-    min-height: 98px;
+    gap: 8px;
+    min-height: 0;
   }
 
   .brand__logo {
-    width: min(240px, 54vw);
-    height: 74px;
+    width: min(280px, 84vw);
+    height: 66px;
   }
 
   .header-action-link,
   .header-actions a {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .header-cart-button {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .header-checkout-link {
-    font-size: 13px;
+    font-size: 12px;
+    padding: 0 9px;
   }
 
   .icon-button {
