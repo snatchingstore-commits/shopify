@@ -23,7 +23,10 @@
                 <p>{{ item.variant.title }}</p>
                 <p>{{ item.final_line_price | money }}</p>
               </div>
-              <input class="quantity-input" type="number" name="updates[]" min="0" value="{{ item.quantity }}">
+              <div class="cart-line__actions">
+                <input class="quantity-input" type="number" name="updates[]" min="0" value="{{ item.quantity }}" aria-label="Quantity for {{ item.product.title }}">
+                <a class="cart-remove-button" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" aria-label="Remove {{ item.product.title | escape }}">Remove</a>
+              </div>
             </div>
           {% endfor %}
         </div>

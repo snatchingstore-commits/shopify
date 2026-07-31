@@ -19,7 +19,7 @@
     });
   }
 
-  function cartItemHtml(item) {
+  function cartItemHtml(item, index) {
     var imageUrl = item.image
       ? item.image + (item.image.indexOf('?') > -1 ? '&' : '?') + 'width=180'
       : '';
@@ -37,7 +37,10 @@
           '<a href="' + item.url + '"><strong>' + escapeHtml(item.product_title) + '</strong></a>',
           variant,
           '<span>' + formatMoney(item.final_line_price) + '</span>',
-          '<input class="quantity-input" type="number" name="updates[]" min="0" value="' + item.quantity + '" aria-label="Quantity for ' + escapeHtml(item.product_title) + '">',
+          '<div class="cart-item-controls">',
+            '<input class="quantity-input" type="number" name="updates[]" min="0" value="' + item.quantity + '" aria-label="Quantity for ' + escapeHtml(item.product_title) + '">',
+            '<button class="cart-remove-button" type="button" data-cart-remove data-line="' + (index + 1) + '" aria-label="Remove ' + escapeHtml(item.product_title) + '">Remove</button>',
+          '</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -107,6 +110,37 @@
       })
       .catch(function () {
         form.submit();
+      })
+      .finally(function () {
+        setButtonLoading(button, false);
+      });
+  });
+
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('[data-cart-remove]');
+    if (!button) return;
+
+    event.preventDefault();
+    setButtonLoading(button, true);
+
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        line: Number(button.getAttribute('data-line')),
+        quantity: 0
+      })
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('Remove from cart failed');
+        return response.json();
+      })
+      .then(updateCartDrawer)
+      .catch(function () {
+        window.location.href = '/cart/change?line=' + button.getAttribute('data-line') + '&quantity=0';
       })
       .finally(function () {
         setButtonLoading(button, false);

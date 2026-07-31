@@ -415,6 +415,41 @@ body {
   padding: 8px;
 }
 
+.cart-item-controls,
+.cart-line__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cart-remove-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(24, 51, 120, .18);
+  border-radius: 999px;
+  color: #183378;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cart-remove-button:hover {
+  color: #ffffff;
+  background: #183378;
+}
+
+.cart-remove-button.is-loading {
+  opacity: .7;
+  cursor: wait;
+}
+
 .cart-drawer__footer {
   display: grid;
   gap: 10px;
