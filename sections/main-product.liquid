@@ -89,8 +89,8 @@
         <input id="ProductQuantity-{{ section.id }}" class="quantity-input" type="number" name="quantity" min="1" value="1">
 
         <div class="product-form__actions">
-          <button class="button button--dark" type="submit" name="return_to" value="/checkout" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Buy Now{% else %}Sold out{% endif %}
+          <button class="button button--dark" type="submit" name="return_to" value="{{ routes.cart_url }}" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}Review cart{% else %}Sold out{% endif %}
           </button>
           <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
             {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
