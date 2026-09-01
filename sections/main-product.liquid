@@ -10,35 +10,43 @@
   <article class="product-detail product-detail--marketplace">
     <div class="product-gallery" data-product-gallery>
       <div class="product-gallery__main">
-        <button class="product-gallery__arrow product-gallery__arrow--prev" type="button" aria-label="Previous product image" data-gallery-prev>&lsaquo;</button>
+        <button class="product-gallery__arrow product-gallery__arrow--prev" type="button" aria-label="Previous product media" data-gallery-prev>&lsaquo;</button>
         <div class="product-gallery__viewport">
-          {% assign image_index = 0 %}
+          {% assign media_index = 0 %}
           {% for media in product.media %}
-            {% if media.media_type == 'image' %}
-              <div class="product-gallery__slide{% if image_index == 0 %} is-active{% endif %}" data-gallery-slide>
-                {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: product.title }}
-              </div>
-              {% assign image_index = image_index | plus: 1 %}
-            {% endif %}
+            <div class="product-gallery__slide{% if media_index == 0 %} is-active{% endif %}" data-gallery-slide>
+              {% case media.media_type %}
+                {% when 'image' %}
+                  {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+                {% when 'video' %}
+                  {{ media | video_tag: controls: true, image_size: '1400x', class: 'product-gallery__video' }}
+                {% when 'external_video' %}
+                  {{ media | external_video_tag: class: 'product-gallery__external-video' }}
+                {% else %}
+                  {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+              {% endcase %}
+            </div>
+            {% assign media_index = media_index | plus: 1 %}
           {% else %}
             <div class="product-gallery__slide is-active" data-gallery-slide>
               {{ 'product-1' | placeholder_svg_tag }}
             </div>
           {% endfor %}
         </div>
-        <button class="product-gallery__arrow product-gallery__arrow--next" type="button" aria-label="Next product image" data-gallery-next>&rsaquo;</button>
+        <button class="product-gallery__arrow product-gallery__arrow--next" type="button" aria-label="Next product media" data-gallery-next>&rsaquo;</button>
       </div>
 
       {% if product.media.size > 1 %}
-        <div class="product-gallery__thumbs" aria-label="Product image thumbnails">
+        <div class="product-gallery__thumbs" aria-label="Product media thumbnails">
           {% assign thumb_index = 0 %}
           {% for media in product.media %}
-            {% if media.media_type == 'image' %}
-              <button class="product-gallery__thumb{% if thumb_index == 0 %} is-active{% endif %}" type="button" data-gallery-thumb="{{ thumb_index }}" aria-label="Show image {{ thumb_index | plus: 1 }}">
-                {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: product.title }}
-              </button>
-              {% assign thumb_index = thumb_index | plus: 1 %}
-            {% endif %}
+            <button class="product-gallery__thumb{% if thumb_index == 0 %} is-active{% endif %}" type="button" data-gallery-thumb="{{ thumb_index }}" aria-label="Show media {{ thumb_index | plus: 1 }}">
+              {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+              {% if media.media_type == 'video' or media.media_type == 'external_video' %}
+                <span class="product-gallery__play" aria-hidden="true">Play</span>
+              {% endif %}
+            </button>
+            {% assign thumb_index = thumb_index | plus: 1 %}
           {% endfor %}
         </div>
       {% endif %}
@@ -156,7 +164,13 @@
     function show(index) {
       if (!slides.length) return;
       active = (index + slides.length) % slides.length;
-      slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === active));
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === active;
+        slide.classList.toggle('is-active', isActive);
+        if (!isActive) {
+          slide.querySelectorAll('video').forEach((video) => video.pause());
+        }
+      });
       thumbs.forEach((thumb, thumbIndex) => thumb.classList.toggle('is-active', thumbIndex === active));
     }
 
