@@ -4,9 +4,10 @@
       <h1>{{ section.settings.heading }}</h1>
     </div>
     <div class="rte ecommerce-info-page__content">
-      {{ section.settings.content }}
       {% if page.content != blank %}
         {{ page.content }}
+      {% else %}
+        {{ section.settings.content }}
       {% endif %}
     </div>
   </div>

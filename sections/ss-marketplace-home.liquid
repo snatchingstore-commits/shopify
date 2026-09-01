@@ -106,7 +106,7 @@
   </div>
   <div class="collection-grid">
     {% for collection in collections limit: 12 %}
-      {% unless collection.handle == 'frontpage' or collection.handle contains 'example-products' or collection.all_products_count == 0 %}
+      {% unless collection.handle == 'frontpage' or collection.handle contains 'example-products' %}
         <a class="collection-tile" href="{{ collection.url }}">{{ collection.title }}</a>
       {% endunless %}
     {% else %}
