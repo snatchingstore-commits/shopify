@@ -49,6 +49,25 @@
   </div>
 </section>
 
+<section class="page-width ss-trust-strip" aria-label="Store benefits">
+  <div>
+    <strong>Cash on Delivery</strong>
+    <span>Pay when your order arrives</span>
+  </div>
+  <div>
+    <strong>Rs. 200 Delivery</strong>
+    <span>Flat delivery across Pakistan</span>
+  </div>
+  <div>
+    <strong>2-4 Day Delivery</strong>
+    <span>Fast dispatch with tracking</span>
+  </div>
+  <div>
+    <strong>WhatsApp Support</strong>
+    <span>Order help at +92 302 0220128</span>
+  </div>
+</section>
+
 <section class="page-width flash-sale-feature" aria-label="Decor highlights">
   <div class="flash-sale-feature__intro">
     <p class="eyebrow">Handcrafted picks</p>
@@ -99,6 +118,85 @@
   </div>
 </section>
 
+<section class="page-width ss-style-ideas" aria-label="Decor ideas">
+  <div class="shelf__heading">
+    <div>
+      <p class="eyebrow">Style your space</p>
+      <h2>Decor ideas for every corner</h2>
+    </div>
+    <a href="{{ routes.all_products_collection_url }}">Shop decor</a>
+  </div>
+  <div class="ss-style-grid">
+    <a class="ss-style-card" href="{{ routes.collections_url }}/wall-hanging-decor">
+      <span>01</span>
+      <strong>Living room wall</strong>
+      <p>Create a warmer focal point with hanging jars, planters and floral accents.</p>
+    </a>
+    <a class="ss-style-card" href="{{ routes.collections_url }}/glass-jar-planters">
+      <span>02</span>
+      <strong>Balcony corner</strong>
+      <p>Add greenery and color without daily watering or heavy maintenance.</p>
+    </a>
+    <a class="ss-style-card" href="{{ routes.collections_url }}/artificial-plants">
+      <span>03</span>
+      <strong>Gift-ready decor</strong>
+      <p>Choose small handmade-style pieces for housewarmings and room makeovers.</p>
+    </a>
+  </div>
+</section>
+
+<section class="page-width ss-why-band" aria-label="Why shop at Snatching Store">
+  <div class="ss-section-copy">
+    <p class="eyebrow">Why Snatching Store?</p>
+    <h2>Small details that make your space feel special</h2>
+    <p>Affordable handcrafted wall decor, hanging planters and floral accents selected for homes across Pakistan.</p>
+  </div>
+  <div class="ss-benefit-grid">
+    <div class="ss-benefit-item">
+      <strong>Ready to Hang</strong>
+      <span>Easy wall styling without complicated setup.</span>
+    </div>
+    <div class="ss-benefit-item">
+      <strong>Artificial Greenery</strong>
+      <span>Fresh decorative look with low maintenance.</span>
+    </div>
+    <div class="ss-benefit-item">
+      <strong>Giftable Pieces</strong>
+      <span>Thoughtful decor for birthdays and housewarmings.</span>
+    </div>
+    <div class="ss-benefit-item">
+      <strong>Local Support</strong>
+      <span>WhatsApp support for product and order questions.</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-width ss-wall-set" aria-label="Complete wall set">
+  <div class="ss-wall-set__copy">
+    <p class="eyebrow">Curated wall look</p>
+    <h2>Complete your wall with matching decor</h2>
+    <p>Layer a statement planter with mini jars and floral accents to build a complete warm wall look.</p>
+    <ul>
+      <li>Mix compact, vertical and statement hanging pieces</li>
+      <li>Works for living rooms, entrances and covered balconies</li>
+      <li>Order on WhatsApp if you want help choosing a set</li>
+    </ul>
+    <a class="button button--dark" href="{{ routes.all_products_collection_url }}">Build your wall set</a>
+  </div>
+  <div class="ss-wall-set__products">
+    {% for product in collections.all.products limit: 3 %}
+      {% assign product_image = product.featured_media.preview_image | default: product.featured_image %}
+      <a class="ss-mini-product" href="{{ product.url }}">
+        {% if product_image %}
+          {{ product_image | image_url: width: 360 | image_tag: loading: 'lazy', alt: product.title }}
+        {% endif %}
+        <span>{{ product.title }}</span>
+        <strong>{{ product.price | money }}</strong>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
 <section class="page-width shelf">
   <div class="shelf__heading">
     <h2>Shop by style</h2>
@@ -117,6 +215,34 @@
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Fashion</a>
       <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Lifestyle</a>
     {% endfor %}
+  </div>
+</section>
+
+<section class="page-width ss-faq-preview" aria-label="Frequently asked questions">
+  <div class="shelf__heading">
+    <div>
+      <p class="eyebrow">Questions</p>
+      <h2>Everything you need to know</h2>
+    </div>
+    <a href="/pages/faq">Full FAQ</a>
+  </div>
+  <div class="ss-faq-grid">
+    <div>
+      <strong>Is Cash on Delivery available?</strong>
+      <p>Yes. Cash on Delivery is available on eligible orders across Pakistan.</p>
+    </div>
+    <div>
+      <strong>How long is delivery?</strong>
+      <p>Most orders are delivered within 2 to 4 days after confirmation.</p>
+    </div>
+    <div>
+      <strong>Are these ready to hang?</strong>
+      <p>Yes. Most decor pieces are designed for easy wall styling.</p>
+    </div>
+    <div>
+      <strong>What if an item arrives damaged?</strong>
+      <p>Contact us with your order number and photos within the policy window.</p>
+    </div>
   </div>
 </section>
 
