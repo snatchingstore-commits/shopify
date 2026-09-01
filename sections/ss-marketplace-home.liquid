@@ -106,7 +106,7 @@
   </div>
   <div class="collection-grid">
     {% for collection in collections limit: 12 %}
-      {% unless collection.handle == 'frontpage' or collection.handle contains 'example-products' or collection.products_count == 0 %}
+      {% unless collection.handle == 'frontpage' or collection.handle contains 'example-products' or collection.all_products_count == 0 %}
         <a class="collection-tile" href="{{ collection.url }}">{{ collection.title }}</a>
       {% endunless %}
     {% else %}
@@ -217,57 +217,57 @@
     },
     {
       "type": "header",
-      "content": "Flash poster slider 1200 x 700px"
+      "content": "Decor poster slider 1200 x 700px"
     },
     {
       "type": "image_picker",
       "id": "flash_poster_1",
-      "label": "Flash sale poster 1 - 1200 x 700px"
+      "label": "Decor poster 1 - 1200 x 700px"
     },
     {
       "type": "text",
       "id": "flash_poster_1_alt",
-      "label": "Flash sale poster 1 alt text",
-      "default": "SnatchingStore flash sale poster 1"
+      "label": "Decor poster 1 alt text",
+      "default": "SnatchingStore decor poster 1"
     },
     {
       "type": "url",
       "id": "flash_poster_1_link",
-      "label": "Flash sale poster 1 link",
+      "label": "Decor poster 1 link",
       "default": "/collections/all"
     },
     {
       "type": "image_picker",
       "id": "flash_poster_2",
-      "label": "Flash sale poster 2 - 1200 x 700px"
+      "label": "Decor poster 2 - 1200 x 700px"
     },
     {
       "type": "text",
       "id": "flash_poster_2_alt",
-      "label": "Flash sale poster 2 alt text",
-      "default": "SnatchingStore flash sale poster 2"
+      "label": "Decor poster 2 alt text",
+      "default": "SnatchingStore decor poster 2"
     },
     {
       "type": "url",
       "id": "flash_poster_2_link",
-      "label": "Flash sale poster 2 link",
+      "label": "Decor poster 2 link",
       "default": "/collections/all"
     },
     {
       "type": "image_picker",
       "id": "flash_poster_3",
-      "label": "Flash sale poster 3 - 1200 x 700px"
+      "label": "Decor poster 3 - 1200 x 700px"
     },
     {
       "type": "text",
       "id": "flash_poster_3_alt",
-      "label": "Flash sale poster 3 alt text",
-      "default": "SnatchingStore flash sale poster 3"
+      "label": "Decor poster 3 alt text",
+      "default": "SnatchingStore decor poster 3"
     },
     {
       "type": "url",
       "id": "flash_poster_3_link",
-      "label": "Flash sale poster 3 link",
+      "label": "Decor poster 3 link",
       "default": "/collections/all"
     },
     {
@@ -290,7 +290,7 @@
       "type": "text",
       "id": "deal_title",
       "label": "Deal shelf title",
-      "default": "Flash deals"
+      "default": "Decor offers"
     }
   ],
   "blocks": [

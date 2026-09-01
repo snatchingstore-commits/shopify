@@ -13,7 +13,7 @@
       "type": "main-ecommerce-info",
       "settings": {
         "heading": "Frequently asked questions",
-        "content": "<p>Add common answers about delivery, payment, product care, returns and order support.</p>"
+        "content": "<h2>Ordering</h2><p><strong>Where do you deliver?</strong><br>We deliver across Pakistan.</p><p><strong>Is Cash on Delivery available?</strong><br>Yes, Cash on Delivery is available on eligible orders.</p><h2>Delivery</h2><p><strong>How long does delivery take?</strong><br>Most orders are delivered within 2 to 4 days after confirmation.</p><p><strong>What is the delivery fee?</strong><br>Delivery is Rs. 200 flat across Pakistan.</p><p><strong>Will I receive tracking?</strong><br>Yes, tracking is shared after dispatch.</p><h2>Returns</h2><p><strong>Can I return an item if I change my mind?</strong><br>No, change-of-mind returns are not accepted.</p><p><strong>What if my item arrives damaged or wrong?</strong><br>Contact us within the policy window with your order number and clear photos so we can help.</p><h2>Support</h2><p><strong>How can I contact you?</strong><br>Email snatchingstore@gmail.com or WhatsApp +92 302 0220128.</p>"
       }
     }
   },
