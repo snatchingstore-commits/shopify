@@ -49,12 +49,12 @@
   </div>
 </section>
 
-<section class="page-width flash-sale-feature" aria-label="Flash sale promotions">
+<section class="page-width flash-sale-feature" aria-label="Decor highlights">
   <div class="flash-sale-feature__intro">
-    <p class="eyebrow">Limited time</p>
-    <h2>Flash Sale</h2>
-    <p>Fresh offers, quick deals, and short-run finds. Add your strongest sale posters here.</p>
-    <a class="button" href="{{ routes.all_products_collection_url }}">Shop offers</a>
+    <p class="eyebrow">Handcrafted picks</p>
+    <h2>Decor Highlights</h2>
+    <p>Featured wall accents, hanging jars, and floral pieces for warm, lived-in spaces.</p>
+    <a class="button" href="{{ routes.all_products_collection_url }}">Shop decor</a>
   </div>
   <div class="flash-sale-feature__posters">
     <article class="flash-poster flash-poster--1">
@@ -106,7 +106,7 @@
   </div>
   <div class="collection-grid">
     {% for collection in collections limit: 12 %}
-      {% unless collection.handle == 'frontpage' %}
+      {% unless collection.handle == 'frontpage' or collection.handle contains 'example-products' or collection.products_count == 0 %}
         <a class="collection-tile" href="{{ collection.url }}">{{ collection.title }}</a>
       {% endunless %}
     {% else %}
