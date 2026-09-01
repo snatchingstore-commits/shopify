@@ -11,8 +11,12 @@
       {%- if current_page != 1 %} - Page {{ current_page }}{% endif -%}
       {%- unless page_title contains shop.name %} - {{ shop.name }}{% endunless -%}
     </title>
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+    {% assign seo_description = page_description %}
+    {% if request.page_type == 'index' %}
+      {% assign seo_description = 'Affordable handcrafted wall decor, hanging planters, floral accents and glass jar decor delivered across Pakistan with Cash on Delivery available.' %}
+    {% endif %}
+    {% if seo_description %}
+      <meta name="description" content="{{ seo_description | escape }}">
     {% endif %}
     {{ content_for_header }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
