@@ -14,14 +14,14 @@
         "type": "header",
         "settings": {
           "logo": "shopify://shop_images/Untitled_design_5.png",
-          "promo_text": "Mega deals, home finds, gadgets, beauty and more",
+          "promo_text": "Affordable handcrafted wall decor, delivered across Pakistan",
           "service_text": "Fast support | Secure checkout | New offers weekly"
         }
       },
       "footer": {
         "type": "footer",
         "settings": {
-          "footer_text": "A multi-niche store for sharp everyday finds, seasonal deals and useful home upgrades."
+          "footer_text": "Affordable handcrafted wall decor, delivered across Pakistan."
         }
       }
     },

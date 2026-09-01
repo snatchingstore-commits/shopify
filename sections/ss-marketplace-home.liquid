@@ -1,5 +1,4 @@
 {% assign featured_collection = section.settings.featured_collection | default: collections.all %}
-{% assign deal_collection = section.settings.deal_collection | default: collections.all %}
 
 <section class="page-width market-shell">
   <aside class="category-panel" aria-label="Shop categories">
@@ -90,10 +89,10 @@
     <a href="{{ featured_collection.url | default: routes.all_products_collection_url }}">See all</a>
   </div>
   <div class="product-grid">
-    {% for product in featured_collection.products limit: 10 %}
+    {% for product in featured_collection.products limit: 8 %}
       {% render 'product-card', product: product %}
     {% else %}
-      {% for product in collections.all.products limit: 10 %}
+      {% for product in collections.all.products limit: 8 %}
         {% render 'product-card', product: product %}
       {% endfor %}
     {% endfor %}
@@ -102,23 +101,7 @@
 
 <section class="page-width shelf">
   <div class="shelf__heading">
-    <h2>{{ section.settings.deal_title }}</h2>
-    <a href="{{ deal_collection.url | default: routes.all_products_collection_url }}">See all</a>
-  </div>
-  <div class="product-grid">
-    {% for product in deal_collection.products limit: 10 %}
-      {% render 'product-card', product: product %}
-    {% else %}
-      {% for product in collections.all.products limit: 10 %}
-        {% render 'product-card', product: product %}
-      {% endfor %}
-    {% endfor %}
-  </div>
-</section>
-
-<section class="page-width shelf">
-  <div class="shelf__heading">
-    <h2>Shop by department</h2>
+    <h2>Shop by style</h2>
     <a href="{{ routes.all_products_collection_url }}">Catalog</a>
   </div>
   <div class="collection-grid">
@@ -137,22 +120,10 @@
   </div>
 </section>
 
-<section class="page-width shelf">
-  <div class="shelf__heading">
-    <h2>All Products</h2>
-    <a href="{{ routes.all_products_collection_url }}">See all</a>
-  </div>
-  <div class="product-grid">
-    {% for product in collections.all.products limit: 20 %}
-      {% render 'product-card', product: product %}
-    {% endfor %}
-  </div>
-</section>
-
 <section class="page-width newsletter">
   <div>
-    <h2>Get the newest steals first</h2>
-    <p>Sign up for product drops, seasonal picks and store updates.</p>
+    <h2>Get new wall decor drops first</h2>
+    <p>Sign up for handcrafted decor arrivals, restocks and store updates.</p>
   </div>
   {% form 'customer' %}
     <input type="hidden" name="contact[tags]" value="newsletter">
@@ -169,19 +140,19 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Multi-niche deals"
+      "default": "Handcrafted wall decor"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Snatch the finds everyone wants"
+      "default": "Affordable handcrafted wall decor"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Browse useful home decor, lifestyle products and new daily offers in one clean marketplace."
+      "default": "Shop decorative wall planters, hanging jars and floral accents delivered across Pakistan."
     },
     {
       "type": "url",
@@ -308,7 +279,7 @@
       "type": "text",
       "id": "featured_title",
       "label": "Featured shelf title",
-      "default": "Top selling items"
+      "default": "Featured wall decor"
     },
     {
       "type": "collection",
@@ -387,15 +358,15 @@
     {
       "name": "Marketplace homepage",
       "blocks": [
-        { "type": "category", "settings": { "label": "Artificial Plants", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Wall Planters", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Hanging Decor", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Glass Jar Planters", "link": "/collections/all" } },
-        { "type": "category", "settings": { "label": "Mini Bottle Decor", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Artificial Plants", "link": "/collections/artificial-plants" } },
+        { "type": "category", "settings": { "label": "Wall Planters", "link": "/collections/wall-hanging-decor" } },
+        { "type": "category", "settings": { "label": "Hanging Decor", "link": "/collections/wall-hanging-decor" } },
+        { "type": "category", "settings": { "label": "Glass Jar Planters", "link": "/collections/glass-jar-planters" } },
+        { "type": "category", "settings": { "label": "Mini Bottle Decor", "link": "/collections/wall-hanging-decor" } },
         { "type": "category", "settings": { "label": "All Products", "link": "/collections/all" } },
-        { "type": "slide", "settings": { "kicker": "SnatchingStore picks", "heading": "Home decor deals that feel premium", "text": "Feature planters, vases, wall pieces and decorative finds with a strong sale message.", "button_label": "Shop decor", "link": "/collections/all" } },
-        { "type": "slide", "settings": { "kicker": "New niches coming", "heading": "Gadgets, beauty and lifestyle in one store", "text": "Use this banner to announce new product categories as you expand.", "button_label": "Explore", "link": "/collections/all" } },
-        { "type": "slide", "settings": { "kicker": "Flash shelf", "heading": "Deals made for quick discovery", "text": "Highlight best sellers and fast-moving discounts with a marketplace feel.", "button_label": "View offers", "link": "/collections/all" } }
+        { "type": "slide", "settings": { "kicker": "SnatchingStore picks", "heading": "Handcrafted decor for warm walls", "text": "Feature planters, vases, wall pieces and floral accents with clear everyday pricing.", "button_label": "Shop decor", "link": "/collections/all" } },
+        { "type": "slide", "settings": { "kicker": "Delivered across Pakistan", "heading": "Wall accents that arrive fast", "text": "Showcase delivery, tracking and Cash on Delivery confidence for home decor shoppers.", "button_label": "Explore", "link": "/collections/all" } },
+        { "type": "slide", "settings": { "kicker": "Decor shelf", "heading": "Small details for empty walls", "text": "Highlight best sellers and fresh arrivals without repeating the whole catalogue.", "button_label": "View collection", "link": "/collections/all" } }
       ]
     }
   ]

@@ -1153,7 +1153,7 @@ body {
 
 .product-price-row {
   padding-bottom: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   border-bottom: 1px solid #e4e9f6;
 }
 
@@ -1165,6 +1165,27 @@ body {
 
 .product-form--marketplace {
   gap: 10px;
+}
+
+.product-payment-note {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 14px;
+  padding: 12px;
+  color: #0c225c;
+  background: #f6f8fe;
+  border: 1px solid #d9e1f2;
+  border-radius: 8px;
+}
+
+.product-payment-note strong {
+  font-size: 15px;
+}
+
+.product-payment-note span {
+  color: #5e6f94;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .product-form__label {
@@ -1187,6 +1208,12 @@ body {
 
 .product-form__actions .button {
   min-height: 48px;
+}
+
+.product-form__actions .button--whatsapp {
+  grid-column: 1 / -1;
+  color: #ffffff;
+  background: #128c7e;
 }
 
 .product-description {

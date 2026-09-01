@@ -71,6 +71,11 @@
         {% endif %}
       </div>
 
+      <div class="product-payment-note" aria-label="Payment and delivery information">
+        <strong>Cash on Delivery available</strong>
+        <span>Rs. 200 delivery across Pakistan. Estimated delivery: 2-4 days.</span>
+      </div>
+
       {% form 'product', product, class: 'product-form product-form--marketplace' %}
         {% unless product.has_only_default_variant %}
           <label class="product-form__label" for="ProductVariant-{{ section.id }}">Options</label>
@@ -89,12 +94,14 @@
         <input id="ProductQuantity-{{ section.id }}" class="quantity-input" type="number" name="quantity" min="1" value="1">
 
         <div class="product-form__actions">
-          <button class="button button--dark" type="submit" name="return_to" value="{{ routes.cart_url }}" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Review cart{% else %}Sold out{% endif %}
+          <button class="button button--dark" type="submit" name="return_to" value="/checkout" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}Buy Now{% else %}Sold out{% endif %}
           </button>
           <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
             {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
           </button>
+          {% assign whatsapp_message = 'Assalam o Alaikum, I want to order: ' | append: product.title | append: ' - ' | append: shop.url | append: product.url %}
+          <a class="button button--whatsapp" href="https://wa.me/923020220128?text={{ whatsapp_message | url_encode }}">Order on WhatsApp</a>
         </div>
       {% endform %}
 
@@ -109,22 +116,22 @@
         <div class="service-row">
           <span class="service-icon">D</span>
           <div>
-            <strong>Standard Delivery</strong>
-            <p>Fast local delivery with tracking.</p>
+          <strong>Standard Delivery</strong>
+            <p>Pakistan delivery in 2-4 days with tracking.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <span class="service-icon">C</span>
+          <div>
+            <strong>Cash on Delivery</strong>
+            <p>Pay when your order arrives.</p>
           </div>
         </div>
         <div class="service-row">
           <span class="service-icon">R</span>
           <div>
-            <strong>Easy Returns</strong>
-            <p>Return eligible items within 14 days.</p>
-          </div>
-        </div>
-        <div class="service-row">
-          <span class="service-icon">S</span>
-          <div>
-            <strong>Secure Checkout</strong>
-            <p>Safe payment and order confirmation.</p>
+            <strong>Damage Support</strong>
+            <p>Report damaged or wrong items within the policy window.</p>
           </div>
         </div>
       </section>
@@ -132,7 +139,7 @@
       <section>
         <h2>Sold by</h2>
         <strong>SnatchingStore</strong>
-        <p>Multi-niche finds, daily deals and useful home upgrades.</p>
+        <p>Affordable handcrafted wall decor, delivered across Pakistan.</p>
       </section>
     </aside>
   </article>

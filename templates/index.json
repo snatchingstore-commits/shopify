@@ -16,35 +16,35 @@
           "type": "category",
           "settings": {
             "label": "Artificial Plants",
-            "link": "/collections/all"
+            "link": "/collections/artificial-plants"
           }
         },
         "cat_kitchen": {
           "type": "category",
           "settings": {
             "label": "Wall Planters",
-            "link": "/collections/all"
+            "link": "/collections/wall-hanging-decor"
           }
         },
         "cat_beauty": {
           "type": "category",
           "settings": {
             "label": "Hanging Decor",
-            "link": "/collections/all"
+            "link": "/collections/wall-hanging-decor"
           }
         },
         "cat_gadgets": {
           "type": "category",
           "settings": {
             "label": "Glass Jar Planters",
-            "link": "/collections/all"
+            "link": "/collections/glass-jar-planters"
           }
         },
         "cat_fashion": {
           "type": "category",
           "settings": {
             "label": "Mini Bottle Decor",
-            "link": "/collections/all"
+            "link": "/collections/wall-hanging-decor"
           }
         },
         "cat_lifestyle": {
@@ -67,9 +67,9 @@
         "slide_multi": {
           "type": "slide",
           "settings": {
-            "kicker": "New niches coming",
-            "heading": "Gadgets, beauty and lifestyle in one store",
-            "text": "Use this banner to announce new product categories as you expand.",
+            "kicker": "Delivered across Pakistan",
+            "heading": "Wall accents that arrive fast",
+            "text": "Shop handcrafted wall decor with tracking, support and Cash on Delivery.",
             "button_label": "Explore",
             "link": "/collections/all"
           }
@@ -77,10 +77,10 @@
         "slide_flash": {
           "type": "slide",
           "settings": {
-            "kicker": "Flash shelf",
-            "heading": "Deals made for quick discovery",
-            "text": "Highlight best sellers and fast-moving discounts with a marketplace feel.",
-            "button_label": "View offers",
+            "kicker": "Decor shelf",
+            "heading": "Small details for empty walls",
+            "text": "Browse planters, hanging jars and floral accents without digging through repeated sections.",
+            "button_label": "View collection",
             "link": "/collections/all"
           }
         }
@@ -97,9 +97,9 @@
         "slide_flash"
       ],
       "settings": {
-        "eyebrow": "Multi-niche deals",
-        "heading": "Snatch the finds everyone wants",
-        "subheading": "Browse useful home decor, lifestyle products and new daily offers in one clean marketplace.",
+        "eyebrow": "Handcrafted wall decor",
+        "heading": "Affordable handcrafted wall decor",
+        "subheading": "Shop decorative wall planters, hanging jars and floral accents delivered across Pakistan.",
         "hero_link": "shopify://collections/all",
         "main_banner_1": "shopify://shop_images/product_banner_1_natural_wall_decor_1920x600_645457d7-54a7-4912-b5d0-d751ee68d9c2.png",
         "main_banner_1_alt": "SnatchingStore main banner 1",
@@ -120,7 +120,7 @@
         "flash_poster_3_alt": "SnatchingStore flash sale poster 3",
         "flash_poster_3_link": "shopify://collections/all",
         "featured_collection": "",
-        "featured_title": "Top selling items",
+        "featured_title": "Featured wall decor",
         "deal_collection": "",
         "deal_title": "Flash deals"
       }
