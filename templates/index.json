@@ -16,41 +16,41 @@
           "type": "category",
           "settings": {
             "label": "Artificial Plants",
-            "link": "/collections/artificial-plants"
+            "link": "/collections/wall-hanging-decor"
           }
         },
         "cat_kitchen": {
           "type": "category",
           "settings": {
-            "label": "Wall Planters",
+            "label": "Wall Hanging Decor",
             "link": "/collections/wall-hanging-decor"
           }
         },
         "cat_beauty": {
           "type": "category",
           "settings": {
-            "label": "Hanging Decor",
+            "label": "Bottle & Jar Planters",
             "link": "/collections/wall-hanging-decor"
           }
         },
         "cat_gadgets": {
           "type": "category",
           "settings": {
-            "label": "Glass Jar Planters",
-            "link": "/collections/glass-jar-planters"
+            "label": "Track Order",
+            "link": "/pages/track-order"
           }
         },
         "cat_fashion": {
           "type": "category",
           "settings": {
-            "label": "Mini Bottle Decor",
-            "link": "/collections/wall-hanging-decor"
+            "label": "Contact Us",
+            "link": "/pages/contact"
           }
         },
         "cat_lifestyle": {
           "type": "category",
           "settings": {
-            "label": "All Products",
+            "label": "Shop All",
             "link": "/collections/all"
           }
         },
@@ -97,10 +97,19 @@
         "slide_flash"
       ],
       "settings": {
-        "eyebrow": "Handcrafted wall decor",
-        "heading": "Affordable handcrafted wall decor",
-        "subheading": "Shop decorative wall planters, hanging jars and floral accents delivered across Pakistan.",
+        "eyebrow": "Affordable Handcrafted Wall Decor for Pakistani Homes",
+        "heading": "Handcrafted Wall Decor for Beautiful Pakistani Homes",
+        "subheading": "Unique hanging planters and floral arrangements, handmade with care and delivered across Pakistan.",
         "hero_link": "shopify://collections/all",
+        "trust_1_title": "Cash on Delivery",
+        "trust_1_text": "Pay when your order arrives",
+        "trust_2_title": "Rs.200 Nationwide Shipping",
+        "trust_2_text": "Flat delivery across Pakistan",
+        "trust_3_title": "Estimated Delivery: 2-4 Working Days",
+        "trust_3_text": "Fast dispatch with tracking",
+        "trust_4_title": "WhatsApp Support",
+        "trust_4_text": "Order help at +92 302 0220128",
+        "delivery_estimate": "2-4 working days",
         "main_banner_1": "shopify://shop_images/product_banner_1_natural_wall_decor_1920x600_645457d7-54a7-4912-b5d0-d751ee68d9c2.png",
         "main_banner_1_alt": "SnatchingStore main banner 1",
         "main_banner_1_link": "shopify://collections/all",
@@ -120,9 +129,9 @@
         "flash_poster_3_alt": "SnatchingStore flash sale poster 3",
         "flash_poster_3_link": "shopify://collections/all",
         "featured_collection": "",
-        "featured_title": "Featured Products",
-        "deal_collection": "artificial-plants",
-        "deal_title": "Flash deals"
+        "featured_title": "Featured wall decor",
+        "deal_collection": "",
+        "deal_title": "Decor offers"
       }
     }
   },

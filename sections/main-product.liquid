@@ -1,8 +1,14 @@
+{% assign selected_variant = product.selected_or_first_available_variant %}
+{% assign price_available = true %}
+{% if product.price <= 0 or selected_variant == blank %}
+  {% assign price_available = false %}
+{% endif %}
+
 <section class="page-width template-page product-page">
   <nav class="product-breadcrumb" aria-label="Breadcrumb">
     <a href="{{ routes.root_url }}">Home</a>
     <span>/</span>
-    <a href="{{ routes.all_products_collection_url }}">All Products</a>
+    <a href="{{ routes.all_products_collection_url }}">Shop All</a>
     <span>/</span>
     <span>{{ product.title }}</span>
   </nav>
@@ -54,17 +60,18 @@
 
     <div class="product-detail__info">
       {% if product.compare_at_price > product.price %}
+        {% assign discount_amount = product.compare_at_price | minus: product.price %}
+        {% assign discount_percent = discount_amount | times: 100 | divided_by: product.compare_at_price %}
         <div class="product-flash-strip">
-          <strong>Special Price</strong>
-          <span>Clear everyday value</span>
+          <strong>{{ discount_percent }}% off</strong>
+          <span>Based on current compare-at price</span>
         </div>
       {% endif %}
 
       <h1>{{ product.title }}</h1>
 
       <div class="product-rating-row" aria-label="Product rating">
-        <span class="product-stars" aria-hidden="true">*****</span>
-        <a href="#product-description">Ratings and questions</a>
+        <a href="#product-reviews">Reviews and questions</a>
       </div>
 
       <div class="product-meta-line">
@@ -72,50 +79,117 @@
       </div>
 
       <div class="price-row product-price-row">
-        <span class="price">{{ product.price | money }}</span>
-        {% if product.compare_at_price > product.price %}
+        {% if price_available %}
+          <span class="price">{{ product.price | money }}</span>
+        {% else %}
+          <span class="price price--unavailable">Contact for availability</span>
+        {% endif %}
+        {% if price_available and product.compare_at_price > product.price %}
+          {% assign discount_amount = product.compare_at_price | minus: product.price %}
+          {% assign discount_percent = discount_amount | times: 100 | divided_by: product.compare_at_price %}
           <span class="compare-price">{{ product.compare_at_price | money }}</span>
-          <span class="sale-badge">Sale</span>
+          <span class="sale-badge">{{ discount_percent }}% off</span>
         {% endif %}
       </div>
 
       <div class="product-payment-note" aria-label="Payment and delivery information">
-        <strong>Cash on Delivery available</strong>
-        <span>Rs. 200 delivery across Pakistan. Estimated delivery: 2-4 days.</span>
+        <strong>{{ section.settings.cod_message }}</strong>
+        <ul>
+          <li>{{ section.settings.delivery_area }}</li>
+          <li>{{ section.settings.delivery_estimate }}</li>
+          <li>{{ section.settings.shipping_fee }}</li>
+          <li>{{ section.settings.damage_support }}</li>
+        </ul>
       </div>
 
-      {% form 'product', product, class: 'product-form product-form--marketplace' %}
-        {% unless product.has_only_default_variant %}
-          <label class="product-form__label" for="ProductVariant-{{ section.id }}">Options</label>
-          <select id="ProductVariant-{{ section.id }}" name="id">
-            {% for variant in product.variants %}
-              <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
-                {{ variant.title }} - {{ variant.price | money }}
-              </option>
-            {% endfor %}
-          </select>
-        {% else %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        {% endunless %}
+      {% if price_available %}
+        {% form 'product', product, class: 'product-form product-form--marketplace' %}
+          {% unless product.has_only_default_variant %}
+            <label class="product-form__label" for="ProductVariant-{{ section.id }}">Options</label>
+            <select id="ProductVariant-{{ section.id }}" name="id">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                  {{ variant.title }} - {{ variant.price | money }}
+                </option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="hidden" name="id" value="{{ selected_variant.id }}">
+          {% endunless %}
 
-        <label class="product-form__label" for="ProductQuantity-{{ section.id }}">Quantity</label>
-        <input id="ProductQuantity-{{ section.id }}" class="quantity-input" type="number" name="quantity" min="1" value="1">
+          <label class="product-form__label" for="ProductQuantity-{{ section.id }}">Quantity</label>
+          <input id="ProductQuantity-{{ section.id }}" class="quantity-input" type="number" name="quantity" min="1" value="1">
 
-        <div class="product-form__actions">
-          <button class="button button--dark" type="submit" name="return_to" value="/checkout" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Buy Now{% else %}Sold out{% endif %}
-          </button>
-          <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
-          </button>
-          {% assign whatsapp_message = 'Assalam o Alaikum, I want to order: ' | append: product.title | append: ' - ' | append: shop.url | append: product.url %}
-          <a class="button button--whatsapp" href="https://wa.me/923020220128?text={{ whatsapp_message | url_encode }}">Order on WhatsApp</a>
+          <div class="product-form__actions">
+            <button class="button button--dark" type="submit" name="return_to" value="/checkout" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}Buy Now{% else %}Sold out{% endif %}
+            </button>
+            <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
+            </button>
+            {% assign whatsapp_message = 'Assalam o Alaikum, I want to order: ' | append: product.title | append: ' - ' | append: shop.url | append: product.url %}
+            <a class="button button--whatsapp" href="https://wa.me/923020220128?text={{ whatsapp_message | url_encode }}">Order on WhatsApp</a>
+          </div>
+        {% endform %}
+      {% else %}
+        <div class="product-unavailable-panel">
+          <strong>Price unavailable</strong>
+          <p>Please contact us on WhatsApp for current availability before ordering this item.</p>
+          {% assign whatsapp_message = 'Assalam o Alaikum, please confirm availability for: ' | append: product.title | append: ' - ' | append: shop.url | append: product.url %}
+          <a class="button button--whatsapp" href="https://wa.me/923020220128?text={{ whatsapp_message | url_encode }}">Ask on WhatsApp</a>
         </div>
-      {% endform %}
+      {% endif %}
+
+      <div class="product-spec-panels" aria-label="Product information">
+        {% if product.metafields.custom.dimensions != blank or product.metafields.custom.materials != blank or product.metafields.custom.colour != blank or product.metafields.custom.weight != blank or product.metafields.custom.number_of_pieces != blank or product.metafields.custom.installation_method != blank %}
+          <section>
+            <h2>Specifications</h2>
+            <dl>
+              {% if product.metafields.custom.dimensions != blank %}<div><dt>Dimensions</dt><dd>{{ product.metafields.custom.dimensions.value }}</dd></div>{% endif %}
+              {% if product.metafields.custom.materials != blank %}<div><dt>Materials</dt><dd>{{ product.metafields.custom.materials.value }}</dd></div>{% endif %}
+              {% if product.metafields.custom.colour != blank %}<div><dt>Colour</dt><dd>{{ product.metafields.custom.colour.value }}</dd></div>{% endif %}
+              {% if product.metafields.custom.weight != blank %}<div><dt>Weight</dt><dd>{{ product.metafields.custom.weight.value }}</dd></div>{% endif %}
+              {% if product.metafields.custom.number_of_pieces != blank %}<div><dt>Pieces</dt><dd>{{ product.metafields.custom.number_of_pieces.value }}</dd></div>{% endif %}
+              {% if product.metafields.custom.installation_method != blank %}<div><dt>Installation</dt><dd>{{ product.metafields.custom.installation_method.value }}</dd></div>{% endif %}
+            </dl>
+          </section>
+        {% endif %}
+        {% if product.metafields.custom.package_contents != blank or product.metafields.custom.included_plants_flowers != blank %}
+          <section>
+            <h2>Package contents</h2>
+            {% if product.metafields.custom.package_contents != blank %}<p>{{ product.metafields.custom.package_contents.value }}</p>{% endif %}
+            {% if product.metafields.custom.included_plants_flowers != blank %}<p>{{ product.metafields.custom.included_plants_flowers.value }}</p>{% endif %}
+          </section>
+        {% endif %}
+        {% if product.metafields.custom.care_instructions != blank or product.metafields.custom.handmade_variation_disclaimer != blank %}
+          <section>
+            <h2>Care and handmade notes</h2>
+            {% if product.metafields.custom.care_instructions != blank %}<p>{{ product.metafields.custom.care_instructions.value }}</p>{% endif %}
+            {% if product.metafields.custom.handmade_variation_disclaimer != blank %}<p>{{ product.metafields.custom.handmade_variation_disclaimer.value }}</p>{% endif %}
+          </section>
+        {% endif %}
+      </div>
 
       <div id="product-description" class="rte product-description">
         {{ product.description }}
       </div>
+
+      <section id="product-reviews" class="product-reviews-panel" aria-label="Customer reviews">
+        <h2>Customer reviews</h2>
+        <p>Verified customer reviews for this product will appear here once collected.</p>
+      </section>
+
+      <section class="product-faq-panel" aria-label="Product questions">
+        <h2>Product questions</h2>
+        <details>
+          <summary>Are plants and flowers included?</summary>
+          <p>Please check this product description and package contents. If it is unclear, contact us before ordering.</p>
+        </details>
+        <details>
+          <summary>Are handmade items exactly identical?</summary>
+          <p>Handmade-style decor may have small finishing differences. Product-specific notes are shown above when available.</p>
+        </details>
+      </section>
     </div>
 
     <aside class="product-service-panel" aria-label="Delivery and service details">
@@ -151,6 +225,23 @@
       </section>
     </aside>
   </article>
+
+  {% assign related_collection = product.collections.first %}
+  {% if related_collection != blank %}
+    <section class="shelf related-products" aria-label="Related products">
+      <div class="shelf__heading">
+        <h2>Related products</h2>
+        <a href="{{ related_collection.url }}">View collection</a>
+      </div>
+      <div class="product-grid">
+        {% for related_product in related_collection.products limit: 5 %}
+          {% unless related_product.id == product.id %}
+            {% render 'product-card', product: related_product %}
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 </section>
 
 <script>
@@ -180,8 +271,67 @@
   });
 </script>
 
+{% if price_available %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "description": {{ product.description | strip_html | strip_newlines | json }},
+      "url": {{ shop.url | append: product.url | json }},
+      {% if product.featured_image %}
+        "image": [{{ product.featured_image | image_url: width: 1200 | prepend: "https:" | json }}],
+      {% endif %}
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | default: shop.name | json }}
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": {{ shop.url | append: product.url | json }},
+        "priceCurrency": {{ cart.currency.iso_code | default: shop.currency | json }},
+        "price": "{{ product.price | money_without_currency | replace: ',', '' }}",
+        "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+        "itemCondition": "https://schema.org/NewCondition"
+      }
+    }
+  </script>
+{% endif %}
+
 {% schema %}
 {
-  "name": "Main product"
+  "name": "Main product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cod_message",
+      "label": "COD message",
+      "default": "Cash on Delivery Available"
+    },
+    {
+      "type": "text",
+      "id": "delivery_area",
+      "label": "Delivery area",
+      "default": "Delivery Across Pakistan"
+    },
+    {
+      "type": "text",
+      "id": "delivery_estimate",
+      "label": "Delivery estimate",
+      "default": "Estimated Delivery: 2-4 Working Days"
+    },
+    {
+      "type": "text",
+      "id": "shipping_fee",
+      "label": "Shipping fee",
+      "default": "Flat Shipping: Rs.200"
+    },
+    {
+      "type": "text",
+      "id": "damage_support",
+      "label": "Damage support",
+      "default": "Damaged or Wrong Item Support"
+    }
+  ]
 }
 {% endschema %}

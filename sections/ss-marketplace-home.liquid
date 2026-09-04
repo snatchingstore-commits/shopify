@@ -1,4 +1,5 @@
 {% assign featured_collection = section.settings.featured_collection | default: collections.all %}
+{% assign whatsapp_store_message = 'Assalam o Alaikum, I want to order from Snatching Store: ' | append: shop.url %}
 
 <section class="page-width market-shell">
   <aside class="category-panel" aria-label="Shop categories">
@@ -46,33 +47,57 @@
       <span></span>
       <span></span>
     </div>
+    <div class="hero-frame__content">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1>{{ section.settings.heading }}</h1>
+      <p>{{ section.settings.subheading }}</p>
+      <div class="hero-frame__actions">
+        <a class="button button--dark" href="{{ section.settings.hero_link | default: routes.all_products_collection_url }}">Shop Bestsellers</a>
+        <a class="button button--whatsapp" href="https://wa.me/923020220128?text={{ whatsapp_store_message | url_encode }}">Order on WhatsApp</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="page-width ss-trust-strip" aria-label="Store benefits">
   <div>
-    <strong>Cash on Delivery</strong>
-    <span>Pay when your order arrives</span>
+    <strong>{{ section.settings.trust_1_title }}</strong>
+    <span>{{ section.settings.trust_1_text }}</span>
   </div>
   <div>
-    <strong>Rs. 200 Delivery</strong>
-    <span>Flat delivery across Pakistan</span>
+    <strong>{{ section.settings.trust_2_title }}</strong>
+    <span>{{ section.settings.trust_2_text }}</span>
   </div>
   <div>
-    <strong>2-4 Day Delivery</strong>
-    <span>Fast dispatch with tracking</span>
+    <strong>{{ section.settings.trust_3_title }}</strong>
+    <span>{{ section.settings.trust_3_text }}</span>
   </div>
   <div>
-    <strong>WhatsApp Support</strong>
-    <span>Order help at +92 302 0220128</span>
+    <strong>{{ section.settings.trust_4_title }}</strong>
+    <span>{{ section.settings.trust_4_text }}</span>
   </div>
+</section>
+
+<section class="page-width ss-category-feature" aria-label="Featured categories">
+  <a class="ss-category-card" href="{{ routes.collections_url }}/wall-hanging-decor">
+    <span>Wall Hanging Decor</span>
+    <strong>Handmade-style accents for empty walls</strong>
+  </a>
+  <a class="ss-category-card" href="{{ routes.collections_url }}/wall-hanging-decor">
+    <span>Bottle & Jar Planters</span>
+    <strong>Compact hanging jars and floral pieces</strong>
+  </a>
+  <a class="ss-category-card" href="{{ routes.collections_url }}/wall-hanging-decor">
+    <span>Artificial Plants</span>
+    <strong>Low-maintenance greenery for home corners</strong>
+  </a>
 </section>
 
 <section class="page-width flash-sale-feature" aria-label="Decor highlights">
   <div class="flash-sale-feature__intro">
     <p class="eyebrow">Handcrafted picks</p>
-    <h2>Decor Highlights</h2>
-    <p>Featured wall accents, hanging jars, and floral pieces for warm, lived-in spaces.</p>
+    <h2>Featured Home Decor</h2>
+    <p>Discover handcrafted wall decor designed to add colour, personality and charm to your space.</p>
     <a class="button" href="{{ routes.all_products_collection_url }}">Shop decor</a>
   </div>
   <div class="flash-sale-feature__posters">
@@ -108,13 +133,26 @@
     <a href="{{ featured_collection.url | default: routes.all_products_collection_url }}">See all</a>
   </div>
   <div class="product-grid">
-    {% for product in featured_collection.products limit: 8 %}
+    {% for product in featured_collection.products limit: 4 %}
       {% render 'product-card', product: product %}
     {% else %}
-      {% for product in collections.all.products limit: 8 %}
+      {% for product in collections.all.products limit: 4 %}
         {% render 'product-card', product: product %}
       {% endfor %}
     {% endfor %}
+  </div>
+</section>
+
+<section class="page-width ss-process-section" aria-label="Handmade decor process">
+  <div class="ss-section-copy">
+    <p class="eyebrow">Made for home styling</p>
+    <h2>Handcrafted details, simple wall styling</h2>
+    <p>Choose a decor piece, confirm your order on Shopify or WhatsApp, and style your wall when it arrives. Product-specific size and care details appear on each product page when available.</p>
+  </div>
+  <div class="ss-process-grid">
+    <div><strong>1. Pick your style</strong><span>Wall hangings, bottle planters or artificial floral decor.</span></div>
+    <div><strong>2. Confirm payment</strong><span>Cash on Delivery is available for eligible orders across Pakistan.</span></div>
+    <div><strong>3. Receive support</strong><span>Contact us quickly if your order arrives damaged or wrong.</span></div>
   </div>
 </section>
 
@@ -132,12 +170,12 @@
       <strong>Living room wall</strong>
       <p>Create a warmer focal point with hanging jars, planters and floral accents.</p>
     </a>
-    <a class="ss-style-card" href="{{ routes.collections_url }}/glass-jar-planters">
+    <a class="ss-style-card" href="{{ routes.collections_url }}/wall-hanging-decor">
       <span>02</span>
       <strong>Balcony corner</strong>
       <p>Add greenery and color without daily watering or heavy maintenance.</p>
     </a>
-    <a class="ss-style-card" href="{{ routes.collections_url }}/artificial-plants">
+    <a class="ss-style-card" href="{{ routes.collections_url }}/wall-hanging-decor">
       <span>03</span>
       <strong>Gift-ready decor</strong>
       <p>Choose small handmade-style pieces for housewarmings and room makeovers.</p>
@@ -197,24 +235,22 @@
   </div>
 </section>
 
-<section class="page-width shelf">
-  <div class="shelf__heading">
-    <h2>Shop by style</h2>
-    <a href="{{ routes.all_products_collection_url }}">Catalog</a>
+<section class="page-width ss-reviews-section" aria-label="Customer reviews">
+  <div class="ss-section-copy">
+    <p class="eyebrow">Customer reviews</p>
+    <h2>Real customer feedback will appear here</h2>
+    <p>We only show genuine reviews. After your first verified reviews are collected, connect them here for stronger trust before scaling ads.</p>
   </div>
-  <div class="collection-grid">
-    {% for collection in collections limit: 12 %}
-      {% unless collection.handle == 'frontpage' or collection.handle contains 'example-products' %}
-        <a class="collection-tile" href="{{ collection.url }}">{{ collection.title }}</a>
-      {% endunless %}
-    {% else %}
-      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Home Decor</a>
-      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Beauty</a>
-      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Gadgets</a>
-      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Kitchen</a>
-      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Fashion</a>
-      <a class="collection-tile" href="{{ routes.all_products_collection_url }}">Lifestyle</a>
-    {% endfor %}
+</section>
+
+<section class="page-width ss-delivery-section" aria-label="Delivery and replacement information">
+  <div>
+    <strong>Delivery across Pakistan</strong>
+    <p>{{ section.settings.trust_2_text }} Estimated delivery is {{ section.settings.delivery_estimate }} after confirmation.</p>
+  </div>
+  <div>
+    <strong>Damage or wrong item support</strong>
+    <p>If an item arrives broken, damaged or wrong, contact support with photos and your order number within the policy window.</p>
   </div>
 </section>
 
@@ -266,25 +302,83 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Handcrafted wall decor"
+      "default": "Affordable Handcrafted Wall Decor for Pakistani Homes"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Affordable handcrafted wall decor"
+      "default": "Handcrafted Wall Decor for Beautiful Pakistani Homes"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Shop decorative wall planters, hanging jars and floral accents delivered across Pakistan."
+      "default": "Unique hanging planters and floral arrangements, handmade with care and delivered across Pakistan."
     },
     {
       "type": "url",
       "id": "hero_link",
       "label": "Hero link",
       "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Trust bar"
+    },
+    {
+      "type": "text",
+      "id": "trust_1_title",
+      "label": "Trust item 1 title",
+      "default": "Cash on Delivery"
+    },
+    {
+      "type": "text",
+      "id": "trust_1_text",
+      "label": "Trust item 1 text",
+      "default": "Pay when your order arrives"
+    },
+    {
+      "type": "text",
+      "id": "trust_2_title",
+      "label": "Trust item 2 title",
+      "default": "Rs.200 Nationwide Shipping"
+    },
+    {
+      "type": "text",
+      "id": "trust_2_text",
+      "label": "Trust item 2 text",
+      "default": "Flat delivery across Pakistan"
+    },
+    {
+      "type": "text",
+      "id": "trust_3_title",
+      "label": "Trust item 3 title",
+      "default": "Estimated Delivery: 2-4 Working Days"
+    },
+    {
+      "type": "text",
+      "id": "trust_3_text",
+      "label": "Trust item 3 text",
+      "default": "Fast dispatch with tracking"
+    },
+    {
+      "type": "text",
+      "id": "trust_4_title",
+      "label": "Trust item 4 title",
+      "default": "WhatsApp Support"
+    },
+    {
+      "type": "text",
+      "id": "trust_4_text",
+      "label": "Trust item 4 text",
+      "default": "Order help at +92 302 0220128"
+    },
+    {
+      "type": "text",
+      "id": "delivery_estimate",
+      "label": "Delivery estimate",
+      "default": "2-4 working days"
     },
     {
       "type": "header",
@@ -484,12 +578,11 @@
     {
       "name": "Marketplace homepage",
       "blocks": [
-        { "type": "category", "settings": { "label": "Artificial Plants", "link": "/collections/artificial-plants" } },
-        { "type": "category", "settings": { "label": "Wall Planters", "link": "/collections/wall-hanging-decor" } },
-        { "type": "category", "settings": { "label": "Hanging Decor", "link": "/collections/wall-hanging-decor" } },
-        { "type": "category", "settings": { "label": "Glass Jar Planters", "link": "/collections/glass-jar-planters" } },
-        { "type": "category", "settings": { "label": "Mini Bottle Decor", "link": "/collections/wall-hanging-decor" } },
-        { "type": "category", "settings": { "label": "All Products", "link": "/collections/all" } },
+        { "type": "category", "settings": { "label": "Artificial Plants", "link": "/collections/wall-hanging-decor" } },
+        { "type": "category", "settings": { "label": "Wall Hanging Decor", "link": "/collections/wall-hanging-decor" } },
+        { "type": "category", "settings": { "label": "Bottle & Jar Planters", "link": "/collections/wall-hanging-decor" } },
+        { "type": "category", "settings": { "label": "Track Order", "link": "/pages/track-order" } },
+        { "type": "category", "settings": { "label": "Contact Us", "link": "/pages/contact" } },
         { "type": "slide", "settings": { "kicker": "SnatchingStore picks", "heading": "Handcrafted decor for warm walls", "text": "Feature planters, vases, wall pieces and floral accents with clear everyday pricing.", "button_label": "Shop decor", "link": "/collections/all" } },
         { "type": "slide", "settings": { "kicker": "Delivered across Pakistan", "heading": "Wall accents that arrive fast", "text": "Showcase delivery, tracking and Cash on Delivery confidence for home decor shoppers.", "button_label": "Explore", "link": "/collections/all" } },
         { "type": "slide", "settings": { "kicker": "Decor shelf", "heading": "Small details for empty walls", "text": "Highlight best sellers and fresh arrivals without repeating the whole catalogue.", "button_label": "View collection", "link": "/collections/all" } }
