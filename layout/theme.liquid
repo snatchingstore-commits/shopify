@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#092f2e">
-    {% assign site_logo = images['Untitled_design_5.png'] %}
-    {% assign social_image = page_image | default: site_logo %}
-    {% if site_logo != blank %}
-      <link rel="icon" type="image/png" href="{{ site_logo | image_url: width: 64, height: 64, crop: 'center' }}">
-      <link rel="apple-touch-icon" href="{{ site_logo | image_url: width: 180, height: 180, crop: 'center' }}">
-    {% endif %}
+    {% assign site_logo_url = 'https://snatchingstore.com/cdn/shop/files/Untitled_design_5.png?v=1783801176' %}
+    {% assign social_image = page_image %}
+    <link rel="icon" type="image/png" href="{{ site_logo_url }}&width=64">
+    <link rel="apple-touch-icon" href="{{ site_logo_url }}&width=180">
     <link rel="canonical" href="{{ canonical_url }}">
     <title>
       {{ page_title }}
@@ -34,6 +32,9 @@
     {% if social_image %}
       <meta property="og:image" content="https:{{ social_image | image_url: width: 1200 }}">
       <meta name="twitter:image" content="https:{{ social_image | image_url: width: 1200 }}">
+    {% else %}
+      <meta property="og:image" content="{{ site_logo_url }}&width=1200">
+      <meta name="twitter:image" content="{{ site_logo_url }}&width=1200">
     {% endif %}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ page_title | escape }}">
@@ -47,9 +48,7 @@
         "@type": "Organization",
         "name": {{ shop.name | json }},
         "url": {{ shop.url | json }},
-        {% if site_logo != blank %}
-          "logo": "https:{{ site_logo | image_url: width: 512 }}",
-        {% endif %}
+        "logo": "{{ site_logo_url }}&width=512",
         "email": "snatchingstore@gmail.com",
         "telephone": "+92 302 0220128",
         "address": {
